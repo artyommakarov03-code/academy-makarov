@@ -1,4 +1,4 @@
-const CACHE='academy-makarov-v1';
+const CACHE='academy-makarov-v2';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install',event=>{
