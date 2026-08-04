@@ -199,7 +199,10 @@ export default function AppV2() {
   const [profile, setProfile] = useState(null);
   const [demoProfile, setDemoProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [recoveryMode, setRecoveryMode] = useState(false);
+  const [recoveryMode, setRecoveryMode] = useState(() => {
+    const search = new URLSearchParams(window.location.search);
+    return search.get('recovery') === '1' || window.location.hash.includes('type=recovery');
+  });
   const [page, setPage] = useState('tutor');
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTutor, setActiveTutor] = useState(false);
@@ -216,7 +219,14 @@ export default function AppV2() {
   const currentNav = useMemo(() => navItems.find(([id]) => id === page), [page]);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => { setUser(data.session?.user || null); setLoading(false); });
+    supabase.auth.getSession().then(({ data }) => {
+      const sessionUser = data.session?.user || null;
+      setUser(sessionUser);
+      if (sessionUser && new URLSearchParams(window.location.search).get('recovery') === '1') {
+        setRecoveryMode(true);
+      }
+      setLoading(false);
+    });
     const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'PASSWORD_RECOVERY') setRecoveryMode(true);
       setUser(session?.user || null);

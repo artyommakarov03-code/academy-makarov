@@ -12,5 +12,7 @@ export const supabase = createClient(
   }
 );
 
-export const appRedirectUrl = () =>
-  `${window.location.origin}${window.location.pathname}`;
+const PRODUCTION_APP_URL = 'https://artyommakarov03-code.github.io/academy-makarov/';
+
+export const appRedirectUrl = ({ recovery = false } = {}) =>
+  `${PRODUCTION_APP_URL}${recovery ? '?recovery=1' : ''}`;

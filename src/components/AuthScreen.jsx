@@ -89,7 +89,7 @@ export default function AuthScreen({ recoveryMode, onRecoveryDone, onDemo }) {
     setBusy(true);
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-        redirectTo: appRedirectUrl()
+        redirectTo: appRedirectUrl({ recovery: true })
       });
       if (error) throw error;
       setMessage('Ссылка для восстановления отправлена на почту.');
