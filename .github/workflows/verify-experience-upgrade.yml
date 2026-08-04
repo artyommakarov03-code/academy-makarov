@@ -18,37 +18,48 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        id: install
+        continue-on-error: true
+        run: npm install > /tmp/install.log 2>&1
 
       - name: Build application
         id: build
+        if: steps.install.outcome == 'success'
         continue-on-error: true
-        run: npm run build
+        run: npm run build > /tmp/build.log 2>&1
 
       - name: Record verification result
         if: always()
         env:
+          INSTALL_OUTCOME: ${{ steps.install.outcome }}
           BUILD_OUTCOME: ${{ steps.build.outcome }}
           SOURCE_SHA: ${{ github.sha }}
         run: |
           mkdir -p public
           cat > public/upgrade-build-status.json <<EOF
           {
-            "outcome": "${BUILD_OUTCOME}",
+            "install_outcome": "${INSTALL_OUTCOME}",
+            "build_outcome": "${BUILD_OUTCOME}",
             "source_sha": "${SOURCE_SHA}",
             "verified_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
             "node": "20"
           }
           EOF
+          {
+            echo "=== npm install ==="
+            tail -n 100 /tmp/install.log 2>/dev/null || true
+            echo
+            echo "=== npm run build ==="
+            tail -n 140 /tmp/build.log 2>/dev/null || true
+          } > public/upgrade-build-log.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/upgrade-build-status.json
-          git commit -m "Record experience upgrade build: ${BUILD_OUTCOME}"
+          git add public/upgrade-build-status.json public/upgrade-build-log.txt
+          git commit -m "Record experience upgrade verification: ${INSTALL_OUTCOME}/${BUILD_OUTCOME}"
           git push
 
-      - name: Fail when build failed
-        if: steps.build.outcome != 'success'
+      - name: Fail when verification failed
+        if: steps.install.outcome != 'success' || steps.build.outcome != 'success'
         run: exit 1
