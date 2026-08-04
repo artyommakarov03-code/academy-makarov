@@ -172,7 +172,7 @@ export default function TutorSession({ scenario, profile, user, isDemo, minutes,
 
       if (reply.enabled && !reply.fallback) {
         setAiStatus('online');
-        setAiModel(reply.model || 'Groq');
+        setAiModel(reply.model || 'Gemini');
         logEvent('ai_reply_generated', {
           phase: aiRequest.phase || phase,
           mode: aiRequest.mode || 'explain',
@@ -416,7 +416,7 @@ export default function TutorSession({ scenario, profile, user, isDemo, minutes,
       attempts,
       independent: finalResults.transfer && (hints.transfer || 0) === 0,
       durationMinutes: Math.max(1, Math.round((Date.now() - startedAt.current) / 60000)),
-      aiProvider: aiStatus === 'online' ? 'groq' : 'scenario',
+      aiProvider: aiStatus === 'online' ? 'gemini' : 'scenario',
       aiModel: aiModel || null,
       nextAction:
         overall >= 80
@@ -489,11 +489,11 @@ export default function TutorSession({ scenario, profile, user, isDemo, minutes,
   const canSubmitText = ['diagnostic', 'guided'].includes(phase);
   const sessionMode = energy <= 3 ? 'Восстановительный' : energy >= 8 ? 'Глубокий фокус' : 'Рабочий';
   const aiLabel = aiStatus === 'online'
-    ? 'ИИ Groq активен'
+    ? 'ИИ Gemini активен'
     : aiStatus === 'connecting'
       ? 'Подключаю ИИ'
       : aiStatus === 'needs_key'
-        ? 'Нужен ключ Groq'
+        ? 'Нужен ключ Gemini'
         : aiStatus === 'fallback'
           ? 'Сценарный резерв'
           : 'Демо без внешнего ИИ';
@@ -527,7 +527,7 @@ export default function TutorSession({ scenario, profile, user, isDemo, minutes,
               {messages.map((message) => (
                 <article key={message.id} className={`message ${message.role} ${message.metadata?.kind || ''}`}>
                   <div className="message-avatar">{message.role === 'tutor' ? <Bot /> : <UserRound />}</div>
-                  <div><span>{message.role === 'tutor' ? 'Преподаватель' : profile.display_name || 'Ученик'}{message.role === 'tutor' && message.metadata?.ai?.provider === 'groq' ? ' · ИИ' : ''}</span><p>{message.content}</p></div>
+                  <div><span>{message.role === 'tutor' ? 'Преподаватель' : profile.display_name || 'Ученик'}{message.role === 'tutor' && message.metadata?.ai?.provider === 'gemini' ? ' · ИИ' : ''}</span><p>{message.content}</p></div>
                 </article>
               ))}
               {thinking && <article className="message tutor thinking"><div className="message-avatar"><Bot /></div><div><span>Преподаватель анализирует</span><p><i /><i /><i /></p></div></article>}
