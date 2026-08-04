@@ -1,6 +1,7 @@
 {
-  "outcome": "skipped",
-  "source_sha": "c3080fd653b6e940138f4184e4b330310ca587b3",
-  "verified_at": "2026-08-04T20:31:57Z",
+  "install_outcome": "success",
+  "build_outcome": "success",
+  "source_sha": "f5ea639fcb68f8e92f2795008645c042d4015b56",
+  "verified_at": "2026-08-04T20:33:24Z",
   "node": "20"
 }
