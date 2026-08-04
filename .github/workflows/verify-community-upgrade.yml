@@ -14,19 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
       - name: Install dependencies
         id: install
         continue-on-error: true
-        run: npm install 2>&1 | tee /tmp/install.log
+        shell: bash
+        run: |
+          set -o pipefail
+          node --version | tee /tmp/install.log
+          npm --version | tee -a /tmp/install.log
+          npm install 2>&1 | tee -a /tmp/install.log
       - name: Build application
         id: build
         if: steps.install.outcome == 'success'
         continue-on-error: true
-        run: npm run build 2>&1 | tee /tmp/build.log
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run build 2>&1 | tee /tmp/build.log
       - name: Record verification result
         if: always()
         env:
@@ -43,8 +47,7 @@ jobs:
             "install_outcome": "${INSTALL_OUTCOME}",
             "build_outcome": "${BUILD_OUTCOME}",
             "source_sha": "${SOURCE_SHA}",
-            "verified_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-            "node": "20"
+            "verified_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
           EOF
           git config user.name "github-actions[bot]"
