@@ -1,0 +1,82 @@
+name: Patch adaptive lesson content
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-adaptive-content.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Improve task validation and energy adaptation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('src/data/subjectScenarios.js')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace(
+            "prompt: 'На столе карты A, D, 4 и 7. У каждой с одной стороны буква, с другой число. Правило: «Если на одной стороне гласная, то на другой чётное число». Какие карты обязательно перевернуть для проверки правила?',\n          allKeywords: ['a', '7'],",
+            "prompt: 'На столе карты A, D, 4 и 7. У каждой с одной стороны буква, с другой число. Правило: «Если на одной стороне гласная, то на другой чётное число». Какие карты обязательно перевернуть для проверки правила?',\n          accepted: ['A и 7', 'А и 7', 'A 7', 'А 7'],\n          allKeywords: ['a', '7'],"
+          )
+          s = s.replace(
+            "prompt: 'Есть три выключателя в одной комнате и одна лампа в соседней. Только один выключатель связан с лампой. В комнату с лампой можно войти один раз. Как определить нужный выключатель?',",
+            "prompt: 'Есть три выключателя в одной комнате и одна лампа накаливания в соседней. Только один выключатель связан с лампой. В комнату с лампой можно войти один раз. Как определить нужный выключатель?',"
+          )
+          s = s.replace("allKeywords: ['обоих', 'конц', 'втор'],", "allKeywords: ['конц', 'втор'],")
+          s = s.replace("options: ['интелегентный', 'интеллигентный', 'интеллигентный']", "options: ['интелегентный', 'интеллигентный', 'интеллегентный']")
+          old = "{ id: 'ru-8', type: 'choice', skill: 'ru_spelling', difficulty: 3, prompt: 'Где пишется НН?', options: ['жаре__ая картошка', 'краше__ый забор', 'ране__ый солдат без зависимых слов'], correctOption: 'краше__ый забор', hints: ['Полное страдательное причастие с приставкой обычно имеет НН.'], explanation: 'Крашенный забор — НН. В остальных данных формах возможно одно Н по контексту.' },"
+          new = "{ id: 'ru-8', type: 'choice', skill: 'ru_spelling', difficulty: 3, prompt: 'В каком слове на месте пропуска пишется НН?', options: ['деревя__ый стол', 'кожа__ая куртка', 'ветре__ый день'], correctOption: 'деревя__ый стол', hints: ['Вспомни слова-исключения с суффиксом -янн-.'], explanation: 'Деревянный пишется с НН; кожаный и ветреный — с одной Н.' },"
+          if old not in s:
+            raise SystemExit('ru-8 pattern not found')
+          s = s.replace(old, new)
+
+          start = s.index('export function buildAdaptivePlan')
+          replacement = '''export function buildAdaptivePlan(scenario, minutes, energy) {
+  const countByMinutes = { 15: 3, 30: 5, 45: 7, 60: 9, 75: 11, 90: 13 };
+  const nearest = [15, 30, 45, 60, 75, 90].reduce((best, value) => Math.abs(value - minutes) < Math.abs(best - minutes) ? value : best, 30);
+  const baseCount = countByMinutes[nearest];
+  const adjustment = energy <= 3 ? -2 : energy >= 8 ? 1 : 0;
+  const tasks = scenario.definition.tasks;
+  const ceiling = energy <= 3 ? 3 : energy <= 7 ? 4 : 5;
+  const eligible = tasks.filter((task) => task.difficulty <= ceiling);
+  const desiredCount = Math.max(3, Math.min(tasks.length, baseCount + adjustment));
+  const targetCount = energy <= 3 ? Math.min(desiredCount, eligible.length) : desiredCount;
+  const pool = energy <= 3 ? eligible : tasks;
+  const selected = [];
+  const skillSeen = new Set();
+
+  for (const task of pool) {
+    if (!skillSeen.has(task.skill) && selected.length < targetCount) {
+      selected.push(task);
+      skillSeen.add(task.skill);
+    }
+  }
+  for (const task of pool) {
+    if (!selected.includes(task) && selected.length < targetCount) selected.push(task);
+  }
+
+  return {
+    tasks: selected.slice(0, targetCount),
+    targetCount,
+    mode: energy <= 3 ? 'Восстановительный' : energy >= 8 ? 'Глубокий фокус' : 'Рабочий',
+    explanationStyle: energy <= 3 ? 'короткие объяснения и больше опор' : energy >= 8 ? 'минимум подсказок и сложный перенос' : 'баланс объяснения и самостоятельности',
+    maxDifficulty: Math.max(...selected.slice(0, targetCount).map((task) => task.difficulty))
+  };
+}
+'''
+          s = s[:start] + replacement
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit quality fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/subjectScenarios.js
+          git commit -m "Refine adaptive task validation and energy rules"
+          git push
