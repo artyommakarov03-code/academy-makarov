@@ -28,33 +28,67 @@ const adaptiveFunction = `export function buildAdaptivePlan(scenario, minutes, e
   const adjustment = energy <= 3 ? -2 : energy >= 8 ? 1 : 0;
   const tasks = scenario.definition.tasks;
   const ceiling = energy <= 3 ? 3 : energy <= 7 ? 4 : 5;
-  const eligible = tasks.filter((task) => task.difficulty <= ceiling);
+  const targetDifficulty = energy <= 3 ? 2 : energy <= 5 ? 3 : energy <= 7 ? 4 : 5;
   const desiredCount = Math.max(3, Math.min(tasks.length, baseCount + adjustment));
-  const targetCount = energy <= 3 ? Math.min(desiredCount, eligible.length) : desiredCount;
-  const pool = energy <= 3 ? eligible : tasks;
+  const eligible = tasks.filter((task) => task.difficulty <= ceiling);
+  const targetCount = Math.min(desiredCount, eligible.length);
   const selected = [];
-  const skillSeen = new Set();
+  const selectedIds = new Set();
+  const skills = scenario.definition.skills.map((skill) => skill.slug);
 
-  for (const task of pool) {
-    if (!skillSeen.has(task.skill) && selected.length < targetCount) {
-      selected.push(task);
-      skillSeen.add(task.skill);
-    }
+  const rank = (task) => {
+    const distance = Math.abs(task.difficulty - targetDifficulty);
+    const difficultyPreference = energy >= 6 ? -task.difficulty : task.difficulty;
+    const visualBonus = task.type === 'game' && minutes >= 30 ? -3 : 0;
+    return distance * 20 + difficultyPreference + visualBonus;
+  };
+
+  const add = (task) => {
+    if (!task || selectedIds.has(task.id) || selected.length >= targetCount) return;
+    selected.push(task);
+    selectedIds.add(task.id);
+  };
+
+  for (const skill of skills) {
+    const candidate = eligible
+      .filter((task) => task.skill === skill)
+      .sort((a, b) => rank(a) - rank(b))[0];
+    add(candidate);
   }
-  for (const task of pool) {
-    if (!selected.includes(task) && selected.length < targetCount) selected.push(task);
+
+  const desiredGames = minutes >= 60 && energy >= 5 ? 2 : minutes >= 30 ? 1 : 0;
+  const gameCandidates = eligible
+    .filter((task) => task.type === 'game')
+    .sort((a, b) => rank(a) - rank(b));
+  while (selected.filter((task) => task.type === 'game').length < desiredGames && gameCandidates.length) {
+    add(gameCandidates.shift());
+  }
+
+  const remaining = eligible
+    .filter((task) => !selectedIds.has(task.id))
+    .sort((a, b) => rank(a) - rank(b));
+
+  const skillCounts = Object.fromEntries(skills.map((skill) => [skill, selected.filter((task) => task.skill === skill).length]));
+  while (selected.length < targetCount && remaining.length) {
+    remaining.sort((a, b) => {
+      const balance = (skillCounts[a.skill] || 0) - (skillCounts[b.skill] || 0);
+      return balance !== 0 ? balance : rank(a) - rank(b);
+    });
+    const next = remaining.shift();
+    add(next);
+    skillCounts[next.skill] = (skillCounts[next.skill] || 0) + 1;
   }
 
   return {
-    tasks: selected.slice(0, targetCount),
-    targetCount,
+    tasks: selected,
+    targetCount: selected.length,
     mode: energy <= 3 ? 'Восстановительный' : energy >= 8 ? 'Глубокий фокус' : 'Рабочий',
     explanationStyle: energy <= 3 ? 'короткие объяснения и больше опор' : energy >= 8 ? 'минимум подсказок и сложный перенос' : 'баланс объяснения и самостоятельности',
-    maxDifficulty: Math.max(...selected.slice(0, targetCount).map((task) => task.difficulty))
+    maxDifficulty: selected.length ? Math.max(...selected.map((task) => task.difficulty)) : 0
   };
 }
 `;
 
 source = source.slice(0, functionStart) + adaptiveFunction;
 await writeFile(path, source, 'utf8');
-console.log('Adaptive lesson definitions validated.');
+console.log('Adaptive lesson definitions validated and difficulty-balanced.');
