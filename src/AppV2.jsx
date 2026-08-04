@@ -9,12 +9,14 @@ import {
   CheckCircle2,
   Clock3,
   Code2,
+  Crown,
   Gauge,
   KeyRound,
   Languages,
   Lightbulb,
   LogOut,
   Menu,
+  MessageCircle,
   Play,
   Rocket,
   Settings,
@@ -27,8 +29,11 @@ import {
 import AuthScreen from './components/AuthScreen';
 import Onboarding from './components/Onboarding';
 import AdaptiveTutorSession from './components/AdaptiveTutorSession';
+import CommunityChat from './components/CommunityChat';
+import EnhancedAccountPage from './components/EnhancedAccountPage';
 import { buildAdaptivePlan, subjectScenarios } from './data/subjectScenarios';
 import { supabase } from './lib/supabase';
+import { avatarPublicUrl } from './lib/profileMedia';
 import './adaptive-academy.css';
 
 const subjectIcons = {
@@ -43,6 +48,7 @@ const navItems = [
   ['tutor', 'Преподаватель', Bot],
   ['plan', 'Мой план', Target],
   ['progress', 'Прогресс', BarChart3],
+  ['chat', 'Общий чат', MessageCircle],
   ['account', 'Аккаунт', Settings]
 ];
 
@@ -254,19 +260,19 @@ export default function AppV2() {
     setSessions((current) => [{ id: crypto.randomUUID(), status: 'completed', scenario_slug: scenario.slug, started_at: new Date().toISOString(), result: summary }, ...current]);
   }
 
-  if (loading) return <div className="full-loader"><div className="brand-symbol">АМ</div><span>Загружаю Академию…</span></div>;
+  if (loading) return <div className="full-loader"><div className="brand-symbol">НЗ</div><span>Загружаю Новые Знания…</span></div>;
   if (recoveryMode) return <AuthScreen recoveryMode onRecoveryDone={() => setRecoveryMode(false)} onDemo={enterDemo} />;
   if (!user && !demoProfile) return <AuthScreen recoveryMode={false} onRecoveryDone={() => {}} onDemo={enterDemo} />;
-  if (user && profile && !profile.onboarding_completed) return <Onboarding user={user} onComplete={(newProfile) => { setProfile(newProfile); setMinutes(newProfile.preferred_session_minutes); }} />;
+  if (user && profile && !profile.onboarding_completed) return <Onboarding user={user} initialProfile={profile} onComplete={(newProfile) => { setProfile(newProfile); setMinutes(newProfile.preferred_session_minutes); }} />;
   if (!activeProfile) return <div className="full-loader"><span>Подготавливаю профиль…</span></div>;
 
   return (
     <div className="academy-shell">
       <aside className={menuOpen ? 'app-sidebar open' : 'app-sidebar'}>
-        <div className="sidebar-head"><div className="brand-lockup compact"><div className="brand-symbol">АМ</div><div><b>Академия Макарова</b><span>{isDemo ? 'Инвесторское демо' : 'Персональная среда'}</span></div></div><button className="mobile-close" onClick={() => setMenuOpen(false)}><X /></button></div>
-        <nav>{navItems.map(([id, label, Icon]) => <button key={id} className={page === id ? 'active' : ''} onClick={() => { setPage(id); setMenuOpen(false); }}><Icon /><span>{label}</span>{id === 'tutor' && <i />}</button>)}</nav>
+        <div className="sidebar-head"><div className="brand-lockup compact"><div className="brand-symbol">НЗ</div><div><b>Новые Знания</b><span>by Макаров</span></div></div><button className="mobile-close" onClick={() => setMenuOpen(false)}><X /></button></div>
+        <nav>{navItems.filter(([id]) => !isDemo || id !== 'chat').map(([id, label, Icon]) => <button key={id} className={page === id ? 'active' : ''} onClick={() => { setPage(id); setMenuOpen(false); }}><Icon /><span>{label}</span>{id === 'tutor' && <i />}{id === 'chat' && !isDemo && <i className="community-nav-badge" />}</button>)}</nav>
         <div className="sidebar-subject"><span>Текущий предмет</span><b>{scenario.shortTitle}</b></div>
-        <div className="sidebar-profile"><div className="profile-avatar">{activeProfile.display_name?.[0] || 'У'}</div><div><b>{activeProfile.display_name || 'Ученик'}</b><span>{isDemo ? 'Демо-профиль' : activeProfile.role === 'owner' ? 'Владелец' : 'Ученик'}</span></div></div>
+        <div className="sidebar-profile"><div className="sidebar-profile-avatar">{activeProfile.avatar_path ? <img src={avatarPublicUrl(activeProfile.avatar_path, activeProfile.updated_at)} alt="" /> : (activeProfile.nickname || activeProfile.display_name)?.[0] || 'У'}</div><div className="sidebar-profile-meta"><b>{activeProfile.nickname || activeProfile.display_name || 'Ученик'}</b><span className={!isDemo && activeProfile.role !== 'owner' ? 'sidebar-gold-label' : ''}>{isDemo ? 'Демо-профиль' : activeProfile.role === 'owner' ? 'Владелец' : <><Crown /> Золотой тестер</>}</span></div></div>
         {isDemo ? <button className="sidebar-action" onClick={exitDemo}><LogOut /> Выйти из демо</button> : <button className="sidebar-action" onClick={() => supabase.auth.signOut()}><LogOut /> Выйти</button>}
       </aside>
 
@@ -275,7 +281,8 @@ export default function AppV2() {
         {page === 'tutor' && <TutorHome profile={activeProfile} selectedSubject={selectedSubject} setSelectedSubject={(subject) => { setSelectedSubject(subject); setLatestSummary(null); }} minutes={minutes} setMinutes={setMinutes} energy={energy} setEnergy={setEnergy} onStart={() => setActiveTutor(true)} mastery={mastery} isDemo={isDemo} />}
         {page === 'plan' && <PlanPage profile={activeProfile} scenario={scenario} />}
         {page === 'progress' && <ProgressPage scenario={scenario} mastery={mastery} sessions={sessions} latestSummary={latestSummary?.subject === scenario.subject ? latestSummary : null} />}
-        {page === 'account' && <AccountPage profile={activeProfile} isDemo={isDemo} onProfileUpdate={(updated) => isDemo ? setDemoProfile(updated) : setProfile(updated)} onExitDemo={exitDemo} />}
+        {page === 'chat' && <CommunityChat user={user} profile={activeProfile} isDemo={isDemo} />}
+        {page === 'account' && <EnhancedAccountPage profile={activeProfile} user={user} isDemo={isDemo} onProfileUpdate={(updated) => isDemo ? setDemoProfile(updated) : setProfile(updated)} onExitDemo={exitDemo} />}
         <footer className="app-footer"><span>Adaptive MVP 0.2</span><span>GitHub Pages · Supabase · Gemini · Pyodide</span><span>Пять предметов</span></footer>
       </main>
 
