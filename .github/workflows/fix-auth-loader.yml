@@ -92,3 +92,5 @@ jobs:
           git add src/AppV2.jsx
           git commit -m "Prevent infinite auth loading screen"
           git push
+
+# retry 2
