@@ -8,6 +8,7 @@ import {
   CircleAlert,
   Clock3,
   Code2,
+  Gamepad2,
   Gauge,
   Lightbulb,
   LoaderCircle,
@@ -23,13 +24,15 @@ import { runPython } from '../lib/pythonRunner';
 import { requestTutorReply } from '../lib/tutorAi';
 import { supabase } from '../lib/supabase';
 import { buildAdaptivePlan } from '../data/subjectScenarios';
+import MiniGameTask from './MiniGameTask';
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const clamp = (value) => Math.max(0, Math.min(100, Math.round(value)));
 const normalize = (value) => String(value ?? '')
   .trim()
   .toLowerCase()
-  .replace(/[.,!?;:"'«»]/g, '')
+  .replace(/ё/g, 'е')
+  .replace(/[.,!?;:"'«»()[\]{}]/g, '')
   .replace(/\s+/g, ' ');
 
 function checkAnswer(task, answer) {
@@ -54,8 +57,16 @@ function compactForbidden(task) {
   return [
     ...(task.accepted || []),
     task.correctOption || '',
-    typeof task.numeric === 'number' ? String(task.numeric) : ''
-  ].filter(Boolean).slice(0, 10);
+    typeof task.numeric === 'number' ? String(task.numeric) : '',
+    task.gameData?.correct || ''
+  ].filter(Boolean).slice(0, 12);
+}
+
+function taskKindLabel(task) {
+  if (task?.type === 'code') return 'Код с тестами';
+  if (task?.type === 'game') return 'Интерактивная мини-игра';
+  if (task?.type === 'choice') return 'Выбор с обоснованием';
+  return 'Самостоятельный ответ';
 }
 
 export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, minutes, energy, onExit, onComplete }) {
@@ -73,6 +84,7 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
   const [summary, setSummary] = useState(null);
   const [aiStatus, setAiStatus] = useState(aiEnabled ? 'connecting' : 'scenario');
   const [aiModel, setAiModel] = useState('');
+  const [gameResetToken, setGameResetToken] = useState(0);
 
   const sessionId = useRef(null);
   const messageEnd = useRef(null);
@@ -85,7 +97,7 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
 
   const currentTask = plan.tasks[taskIndex];
   const completedCount = Object.values(resultsRef.current).filter(Boolean).length;
-  const progress = summary ? 100 : Math.round((taskIndex / plan.tasks.length) * 100);
+  const progress = summary ? 100 : Math.round((taskIndex / Math.max(plan.tasks.length, 1)) * 100);
 
   useEffect(() => {
     messageEnd.current?.scrollIntoView({ behavior: 'smooth' });
@@ -104,7 +116,7 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
             lesson_id: null,
             scenario_slug: scenario.slug,
             status: 'active',
-            mode: 'adaptive_ai',
+            mode: 'adaptive_visual_ai',
             planned_minutes: minutes,
             energy,
             profile_snapshot: {
@@ -118,6 +130,7 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
               task_ids: plan.tasks.map((task) => task.id),
               task_count: plan.targetCount,
               max_difficulty: plan.maxDifficulty,
+              visual_tasks: plan.tasks.filter((task) => task.type === 'game').map((task) => task.id),
               phase: 'active'
             }
           })
@@ -126,9 +139,10 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
         if (!error) sessionId.current = data.id;
       }
 
-      if (cancelled) return;
+      if (cancelled || !plan.tasks.length) return;
       setReady(true);
-      const welcome = `${profile.display_name || 'Ученик'}, сегодня выбран предмет «${scenario.title}». За ${minutes} минут план включает ${plan.targetCount} задач; режим — ${plan.mode.toLowerCase()}. ${plan.explanationStyle}.`;
+      const gameCount = plan.tasks.filter((task) => task.type === 'game').length;
+      const welcome = `${profile.display_name || 'Ученик'}, выбран предмет «${scenario.title}». За ${minutes} минут запланировано ${plan.targetCount} задач, включая ${gameCount} интерактивных. Режим — ${plan.mode.toLowerCase()}, сложность до ${plan.maxDifficulty}/5.`;
       await tutorSay(welcome, { kind: 'welcome' }, {
         mode: 'welcome',
         topic: scenario.title,
@@ -137,13 +151,14 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
         revealSolutionAllowed: false
       });
       await tutorSay(scenario.definition.promise, { kind: 'promise' });
-      await tutorSay(plan.tasks[0].prompt, { kind: 'question', taskId: plan.tasks[0].id });
+      await announceTask(plan.tasks[0], 0);
       await logEvent('adaptive_session_started', {
         subject: scenario.subject,
         minutes,
         energy,
         task_count: plan.targetCount,
         max_difficulty: plan.maxDifficulty,
+        game_count: gameCount,
         task_ids: plan.tasks.map((task) => task.id)
       });
     }
@@ -229,12 +244,16 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
         });
       } else if (aiEnabled) {
         setAiStatus(reply.reason === 'AI_NOT_CONFIGURED' ? 'needs_key' : 'fallback');
-        logEvent('ai_fallback_used', { subject: scenario.subject, task_id: currentTask?.id, reason: reply.reason || 'UNKNOWN' });
+        logEvent('ai_fallback_used', {
+          subject: scenario.subject,
+          task_id: currentTask?.id,
+          reason: reply.reason || 'UNKNOWN'
+        });
       }
     }
 
     if (energy <= 3 && content.length > 420) content = `${content.slice(0, 417)}…`;
-    await sleep(metadata.instant ? 0 : 300);
+    await sleep(metadata.instant ? 0 : 280);
     const message = {
       id: crypto.randomUUID(),
       role: 'tutor',
@@ -252,12 +271,21 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
     persistMessage('student', content, metadata);
   }
 
+  async function announceTask(task, index) {
+    const intro = task.type === 'game'
+      ? `Задача ${index + 1}: интерактивная проверка. Здесь важны точность и стратегия, а не скорость любой ценой.`
+      : `Задача ${index + 1}. Сложность ${task.difficulty}/5.`;
+    await tutorSay(intro, { kind: 'transition', taskId: task.id });
+    await tutorSay(task.prompt, { kind: 'question', taskId: task.id });
+  }
+
   async function submitCurrentAnswer() {
     if (!currentTask || thinking || running) return;
     if (currentTask.type === 'code') {
       await executeCode();
       return;
     }
+    if (currentTask.type === 'game') return;
 
     const value = currentTask.type === 'choice' ? selectedOption : answer.trim();
     if (!value) return;
@@ -268,6 +296,26 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
     attemptsRef.current[currentTask.id] = attempt;
     const correct = checkAnswer(currentTask, value);
     await handleCheckedAnswer(correct, value, attempt);
+  }
+
+  async function handleGameComplete(result) {
+    if (!currentTask || currentTask.type !== 'game' || thinking) return;
+    const attempt = (attemptsRef.current[currentTask.id] || 0) + 1;
+    attemptsRef.current[currentTask.id] = attempt;
+    studentSay(result.answer, {
+      task_id: currentTask.id,
+      kind: 'game',
+      game: currentTask.game,
+      details: result.details || {}
+    });
+    await logEvent('mini_game_completed', {
+      task_id: currentTask.id,
+      game: currentTask.game,
+      correct: result.correct,
+      attempt,
+      details: result.details || {}
+    });
+    await handleCheckedAnswer(Boolean(result.correct), result.answer, attempt);
   }
 
   async function executeCode() {
@@ -291,6 +339,7 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
     await logEvent('adaptive_answer_checked', {
       subject: scenario.subject,
       task_id: currentTask.id,
+      task_type: currentTask.type,
       difficulty: currentTask.difficulty,
       correct,
       attempt,
@@ -299,10 +348,13 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
 
     if (!correct) {
       const fallback = codeError
-        ? `Python остановил программу с ошибкой. Найди первую строку, где программа перестаёт соответствовать условию, и исправь только её.`
-        : attempt === 1
-          ? 'Ответ пока не проходит проверку. Вернись к точной формулировке условия и проверь первый шаг рассуждения.'
-          : 'Та же ошибка повторилась. Смени стратегию: выпиши данные, ограничение и то, что требуется найти.';
+        ? 'Python остановил программу. Найди первое расхождение между условием и состоянием программы; исправь только его и запусти тесты снова.'
+        : currentTask.type === 'game'
+          ? 'Результат мини-игры пока ниже порога. Не ускоряйся: сформулируй правило одним предложением и попробуй ещё раз.'
+          : attempt === 1
+            ? 'Ответ не проходит проверку. Проверь скрытое ограничение и первый шаг рассуждения, а не только итог.'
+            : 'Ошибка повторилась. Смени представление задачи: таблица, схема, контрпример или пошаговая запись.';
+
       await tutorSay(fallback, { kind: 'feedback', taskId: currentTask.id }, {
         mode: attempt === 1 ? 'explain' : 'hint',
         topic: currentTask.prompt,
@@ -317,10 +369,12 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
         revealSolutionAllowed: false,
         forbiddenFragments: compactForbidden(currentTask)
       });
+
+      if (currentTask.type === 'game') setGameResetToken((value) => value + 1);
       return;
     }
 
-    const fallback = currentTask.explanation || 'Верно. Важен не только ответ, но и способ, который можно перенести на следующую задачу.';
+    const fallback = currentTask.explanation || 'Верно. Зафиксируй правило, которое сработало, чтобы перенести его на новую формулировку.';
     await tutorSay(fallback, { kind: 'success', taskId: currentTask.id }, {
       mode: 'explain',
       topic: currentTask.prompt,
@@ -369,7 +423,8 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
     setRunResult(null);
     setAnswer('');
     setSelectedOption('');
-    await tutorSay(nextTask.prompt, { kind: 'question', taskId: nextTask.id });
+    setGameResetToken(0);
+    await announceTask(nextTask, nextIndex);
   }
 
   function buildSummary() {
@@ -379,16 +434,23 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
         if (!resultsRef.current[task.id]) return 0;
         const attempts = attemptsRef.current[task.id] || 1;
         const hints = hintsRef.current[task.id] || 0;
-        return clamp(100 - (attempts - 1) * 15 - hints * 12 + (task.difficulty >= 4 ? 5 : 0));
+        const challengeBonus = task.difficulty >= 5 ? 10 : task.difficulty >= 4 ? 6 : 0;
+        const gameBonus = task.type === 'game' ? 4 : 0;
+        return clamp(100 - (attempts - 1) * 14 - hints * 11 + challengeBonus + gameBonus);
       });
-      const measured = scores.length ? Math.round(scores.reduce((sum, value) => sum + value, 0) / scores.length) : skill.baseline;
+      const measured = scores.length
+        ? Math.round(scores.reduce((sum, value) => sum + value, 0) / scores.length)
+        : skill.baseline;
       return { ...skill, value: Math.max(skill.baseline, measured) };
     });
+
     const after = Object.fromEntries(skillRows.map((skill) => [skill.slug, skill.value]));
     const overall = Math.round(skillRows.reduce((sum, skill) => sum + skill.value, 0) / skillRows.length);
     const totalHints = Object.values(hintsRef.current).reduce((sum, value) => sum + value, 0);
     const totalAttempts = Object.values(attemptsRef.current).reduce((sum, value) => sum + value, 0);
     const correctTasks = plan.tasks.filter((task) => resultsRef.current[task.id]).length;
+    const gameCount = plan.tasks.filter((task) => task.type === 'game').length;
+
     return {
       subject: scenario.subject,
       scenarioSlug: scenario.slug,
@@ -397,6 +459,7 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
       overall,
       correctTasks,
       taskCount: plan.tasks.length,
+      gameCount,
       totalHints,
       totalAttempts,
       maxDifficulty: plan.maxDifficulty,
@@ -407,8 +470,8 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
       aiProvider: aiStatus === 'online' ? 'gemini' : 'scenario',
       aiModel: aiModel || null,
       nextAction: overall >= 80
-        ? 'Через 3 дня — короткое воспроизведение без подсказок и новый перенос.'
-        : 'На следующем занятии — повтор ошибок другим способом и более короткая независимая проверка.'
+        ? 'Через 3 дня — короткий повтор без подсказок и новая задача с другим визуальным представлением.'
+        : 'Следующее занятие начнётся с ошибок этой сессии, но покажет их через схему или мини-игру.'
     };
   }
 
@@ -454,7 +517,7 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
       await logEvent('adaptive_session_completed', finalSummary);
     }
 
-    const completion = `Занятие завершено: ${finalSummary.correctTasks} из ${finalSummary.taskCount} задач, итоговое освоение ${finalSummary.overall}%. ${finalSummary.nextAction}`;
+    const completion = `Занятие завершено: ${finalSummary.correctTasks} из ${finalSummary.taskCount} задач, включая ${finalSummary.gameCount} интерактивных. Итоговое освоение — ${finalSummary.overall}%. ${finalSummary.nextAction}`;
     await tutorSay(completion, { kind: 'summary' }, {
       mode: 'summarize',
       topic: scenario.title,
@@ -497,13 +560,17 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
           : 'Демо без внешнего ИИ';
 
   if (!ready) return <div className="full-loader"><LoaderCircle className="spin" /> Подготавливаю адаптивный урок…</div>;
+  if (!currentTask && !summary) return <div className="full-loader">Для этого режима пока нет подходящих задач.</div>;
 
   return (
     <div className="adaptive-overlay">
-      <div className="adaptive-room">
+      <div className="adaptive-room visual-upgrade-room">
         <header className="adaptive-header">
           <button className="icon-button" onClick={leaveSession}><ChevronLeft /></button>
-          <div className="adaptive-title"><div className="tutor-avatar"><Bot /></div><div><span>Преподаватель Академии</span><b>{scenario.title}</b></div></div>
+          <div className="adaptive-title">
+            <div className="tutor-avatar"><Bot /></div>
+            <div><span>Преподаватель Новых Знаний</span><b>{scenario.title}</b></div>
+          </div>
           <div className="adaptive-status">
             <span className={`ai-state ${aiStatus}`}>{aiStatus === 'online' ? <Wifi /> : <WifiOff />}{aiLabel}</span>
             <span><Clock3 /> {minutes} мин</span>
@@ -520,62 +587,124 @@ export default function AdaptiveTutorSession({ scenario, profile, user, isDemo, 
 
         <div className="adaptive-body">
           <section className="adaptive-dialogue">
-            <div className="conversation-head"><div><span>Диалог</span><b>Один шаг за раз</b></div><div className="context-chip">{plan.explanationStyle}</div></div>
+            <div className="conversation-head">
+              <div><span>Диалог</span><b>Один проверяемый шаг за раз</b></div>
+              <div className="context-chip">{plan.explanationStyle}</div>
+            </div>
             <div className="messages">
               {messages.map((message) => (
                 <article key={message.id} className={`message ${message.role} ${message.metadata?.kind || ''}`}>
                   <div className="message-avatar">{message.role === 'tutor' ? <Bot /> : <UserRound />}</div>
-                  <div><span>{message.role === 'tutor' ? 'Преподаватель' : profile.display_name || 'Ученик'}{message.role === 'tutor' && message.metadata?.ai?.provider === 'gemini' ? ' · ИИ' : ''}</span><p>{message.content}</p></div>
+                  <div>
+                    <span>{message.role === 'tutor' ? 'Преподаватель' : profile.display_name || 'Ученик'}{message.role === 'tutor' && message.metadata?.ai?.provider === 'gemini' ? ' · ИИ' : ''}</span>
+                    <p>{message.content}</p>
+                  </div>
                 </article>
               ))}
-              {thinking && <article className="message tutor thinking"><div className="message-avatar"><Bot /></div><div><span>Преподаватель анализирует</span><p><i /><i /><i /></p></div></article>}
+              {thinking && (
+                <article className="message tutor thinking">
+                  <div className="message-avatar"><Bot /></div>
+                  <div><span>Преподаватель анализирует</span><p><i /><i /><i /></p></div>
+                </article>
+              )}
               <div ref={messageEnd} />
             </div>
           </section>
 
           <aside className="adaptive-workspace">
             {!summary && currentTask && (
-              <div className="adaptive-task-card">
-                <div className="task-meta"><span><BrainCircuit /> Навык: {scenario.definition.skills.find((skill) => skill.slug === currentTask.skill)?.title}</span><b>Сложность {currentTask.difficulty}/5</b></div>
+              <div className={`adaptive-task-card task-type-${currentTask.type}`}>
+                <div className="task-meta">
+                  <span>{currentTask.type === 'game' ? <Gamepad2 /> : <BrainCircuit />} Навык: {scenario.definition.skills.find((skill) => skill.slug === currentTask.skill)?.title}</span>
+                  <b>{taskKindLabel(currentTask)} · {currentTask.difficulty}/5</b>
+                </div>
                 <h2>{currentTask.prompt}</h2>
 
                 {currentTask.type === 'choice' && (
-                  <div className="choice-grid">
-                    {currentTask.options.map((option) => <button key={option} className={selectedOption === option ? 'selected' : ''} onClick={() => setSelectedOption(option)}>{option}</button>)}
+                  <div className="choice-grid visual-choice-grid">
+                    {currentTask.options.map((option) => (
+                      <button key={option} className={selectedOption === option ? 'selected' : ''} onClick={() => setSelectedOption(option)}>{option}</button>
+                    ))}
                   </div>
                 )}
 
                 {currentTask.type === 'text' && (
-                  <textarea className="adaptive-answer" value={answer} onChange={(event) => setAnswer(event.target.value)} placeholder="Напиши ответ или ход рассуждения…" />
+                  <textarea
+                    className="adaptive-answer"
+                    value={answer}
+                    onChange={(event) => setAnswer(event.target.value)}
+                    placeholder="Напиши ответ и ключевые шаги рассуждения…"
+                  />
+                )}
+
+                {currentTask.type === 'game' && (
+                  <MiniGameTask
+                    key={`${currentTask.id}-${gameResetToken}`}
+                    task={currentTask}
+                    onComplete={handleGameComplete}
+                  />
                 )}
 
                 {currentTask.type === 'code' && (
                   <div className="adaptive-code">
                     <div className="editor-label"><span>main.py</span><b><Code2 /> Python в браузере</b></div>
                     <textarea className="code-editor" value={code} onChange={(event) => { setCode(event.target.value); setRunResult(null); }} spellCheck="false" />
-                    {runResult && <div className="run-report"><div className="output-box"><span>Вывод программы</span><pre>{runResult.error || runResult.output || 'Программа ничего не вывела.'}</pre></div><div className="test-list"><div><b>Проверки</b><span>{runResult.tests.filter((test) => test.passed).length}/{runResult.tests.length}</span></div>{runResult.tests.map((test) => <article key={test.name} className={test.passed ? 'passed' : 'failed'}>{test.passed ? <CheckCircle2 /> : <CircleAlert />}<span>{test.name}</span></article>)}</div></div>}
+                    {runResult && (
+                      <div className="run-report">
+                        <div className="output-box"><span>Вывод программы</span><pre>{runResult.error || runResult.output || 'Программа ничего не вывела.'}</pre></div>
+                        <div className="test-list">
+                          <div><b>Проверки</b><span>{runResult.tests.filter((test) => test.passed).length}/{runResult.tests.length}</span></div>
+                          {runResult.tests.map((test) => (
+                            <article key={test.name} className={test.passed ? 'passed' : 'failed'}>
+                              {test.passed ? <CheckCircle2 /> : <CircleAlert />}<span>{test.name}</span>
+                            </article>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
 
                 <div className="adaptive-actions">
-                  <button className="secondary" disabled={thinking || running} onClick={showHint}><Lightbulb /> Подсказка {(hintsRef.current[currentTask.id] || 0) > 0 ? `(${hintsRef.current[currentTask.id]})` : ''}</button>
-                  <button className="primary" disabled={thinking || running || (currentTask.type === 'text' ? !answer.trim() : currentTask.type === 'choice' ? !selectedOption : !code.trim())} onClick={submitCurrentAnswer}>
-                    {currentTask.type === 'code' ? (running ? <LoaderCircle className="spin" /> : <Play />) : <Send />}
-                    {currentTask.type === 'code' ? (running ? 'Запускаю…' : 'Запустить и проверить') : 'Проверить ответ'}
+                  <button className="secondary" disabled={thinking || running} onClick={showHint}>
+                    <Lightbulb /> Подсказка {(hintsRef.current[currentTask.id] || 0) > 0 ? `(${hintsRef.current[currentTask.id]})` : ''}
                   </button>
+                  {currentTask.type !== 'game' && (
+                    <button
+                      className="primary"
+                      disabled={thinking || running || (currentTask.type === 'text' ? !answer.trim() : currentTask.type === 'choice' ? !selectedOption : !code.trim())}
+                      onClick={submitCurrentAnswer}
+                    >
+                      {currentTask.type === 'code' ? (running ? <LoaderCircle className="spin" /> : <Play />) : <Send />}
+                      {currentTask.type === 'code' ? (running ? 'Запускаю…' : 'Запустить и проверить') : 'Проверить ответ'}
+                    </button>
+                  )}
                 </div>
               </div>
             )}
 
             {summary && (
               <div className="adaptive-summary">
-                <div className="summary-score"><span>Доказанное освоение</span><b>{summary.overall}%</b><p>{summary.correctTasks} из {summary.taskCount} задач пройдено · максимум сложности {summary.maxDifficulty}/5</p></div>
-                <div className="skill-growth">
-                  {scenario.definition.skills.map((skill) => <article key={skill.slug}><div><b>{skill.title}</b><span>{summary.before[skill.slug]}% → {summary.after[skill.slug]}%</span></div><div className="growth-track"><i className="before" style={{ width: `${summary.before[skill.slug]}%` }} /><i className="after" style={{ width: `${summary.after[skill.slug]}%` }} /></div></article>)}
+                <div className="summary-score">
+                  <span>Доказанное освоение</span>
+                  <b>{summary.overall}%</b>
+                  <p>{summary.correctTasks} из {summary.taskCount} задач · {summary.gameCount} мини-игр · сложность до {summary.maxDifficulty}/5</p>
                 </div>
-                <div className="evidence-grid"><article><b>{summary.durationMinutes} мин</b><span>длительность</span></article><article><b>{summary.totalHints}</b><span>подсказок</span></article><article><b>{summary.totalAttempts}</b><span>попыток</span></article></div>
+                <div className="skill-growth">
+                  {scenario.definition.skills.map((skill) => (
+                    <article key={skill.slug}>
+                      <div><b>{skill.title}</b><span>{summary.before[skill.slug]}% → {summary.after[skill.slug]}%</span></div>
+                      <div className="growth-track"><i className="before" style={{ width: `${summary.before[skill.slug]}%` }} /><i className="after" style={{ width: `${summary.after[skill.slug]}%` }} /></div>
+                    </article>
+                  ))}
+                </div>
+                <div className="evidence-grid">
+                  <article><b>{summary.durationMinutes} мин</b><span>длительность</span></article>
+                  <article><b>{summary.totalHints}</b><span>подсказок</span></article>
+                  <article><b>{summary.totalAttempts}</b><span>попыток</span></article>
+                </div>
                 <div className="next-action"><Sparkles /><div><b>Следующий шаг</b><p>{summary.nextAction}</p></div></div>
-                <button className="primary wide" onClick={leaveSession}>Вернуться в Академию <ArrowRight /></button>
+                <button className="primary wide" onClick={leaveSession}>Вернуться в «Новые Знания» <ArrowRight /></button>
               </div>
             )}
           </aside>
