@@ -2,13 +2,21 @@ import { supabase } from './supabase';
 
 const MAX_DIALOGUE_MESSAGES = 6;
 
+function redactText(value, maxLength) {
+  return String(value || '')
+    .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email скрыт]')
+    .replace(/\+?\d[\d\s().-]{7,}\d/g, '[телефон скрыт]')
+    .slice(0, maxLength);
+}
+
 function compactProfile(profile = {}) {
   return {
-    display_name: String(profile.display_name || '').slice(0, 80),
-    primary_goal: String(profile.primary_goal || '').slice(0, 240),
     schedule_type: String(profile.schedule_type || '').slice(0, 80),
     preferred_session_minutes: Number(profile.preferred_session_minutes || 30),
     programming_level: Number(profile.subject_levels?.programming || 0),
+    learning_goals: Array.isArray(profile.learning_goals)
+      ? profile.learning_goals.map((goal) => String(goal).slice(0, 60)).slice(0, 8)
+      : [],
     learning_preferences: profile.learning_preferences || {}
   };
 }
@@ -16,7 +24,7 @@ function compactProfile(profile = {}) {
 function compactDialogue(messages = []) {
   return messages.slice(-MAX_DIALOGUE_MESSAGES).map((message) => ({
     role: message.role === 'student' ? 'student' : 'tutor',
-    content: String(message.content || '').slice(0, 900)
+    content: redactText(message.content, 900)
   }));
 }
 
@@ -63,12 +71,12 @@ export async function requestTutorReply({
         topic,
         phase,
         objective_verdict: objectiveVerdict,
-        student_answer: String(studentAnswer || '').slice(0, 2500),
-        question: String(question || '').slice(0, 2500),
-        deterministic_feedback: String(deterministicFeedback || '').slice(0, 1800),
-        deterministic_hint: String(deterministicHint || '').slice(0, 1200),
-        code_error: String(codeError || '').slice(0, 1600),
-        failed_tests: failedTests.slice(0, 12),
+        student_answer: redactText(studentAnswer, 2500),
+        question: redactText(question, 2500),
+        deterministic_feedback: redactText(deterministicFeedback, 1800),
+        deterministic_hint: redactText(deterministicHint, 1200),
+        code_error: redactText(codeError, 1600),
+        failed_tests: failedTests.slice(0, 12).map((test) => redactText(test, 300)),
         hint_level: hintLevel,
         attempt,
         energy,
