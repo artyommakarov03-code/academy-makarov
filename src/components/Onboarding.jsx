@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ArrowLeft, ArrowRight, Brain, CalendarDays, Check, Clock3, Target, UserRound } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Brain, CalendarDays, Check, Clock3, Crown, Target, UserRound } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 const subjects = [
@@ -12,28 +12,50 @@ const subjects = [
   ['health', 'Здоровье']
 ];
 
-export default function Onboarding({ user, onComplete }) {
+function ageRange(age) {
+  if (age < 18) return 'under-18';
+  if (age <= 25) return '18-25';
+  if (age <= 35) return '26-35';
+  if (age <= 50) return '36-50';
+  return '50+';
+}
+
+export default function Onboarding({ user, initialProfile, onComplete }) {
+  const initialNickname = initialProfile?.nickname
+    || user.user_metadata?.nickname
+    || user.user_metadata?.display_name
+    || '';
+  const initialAge = initialProfile?.age || user.user_metadata?.age || '';
+
   const [step, setStep] = useState(0);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [form, setForm] = useState({
-    display_name: '',
-    age_range: '18-25',
-    primary_goal: '',
-    learning_goals: ['programming'],
-    programming_level: 0,
-    weekly_hours: 5,
-    preferred_session_minutes: 30,
-    schedule_type: 'regular',
-    schedule_details: '',
-    energy_pattern: 'variable',
-    constraints_text: '',
-    explanation: 'balanced',
-    practice: 'guided'
+    nickname: initialNickname,
+    age: initialAge,
+    bio: initialProfile?.bio || '',
+    primary_goal: initialProfile?.primary_goal || '',
+    learning_goals: initialProfile?.learning_goals?.length ? initialProfile.learning_goals : ['programming'],
+    programming_level: initialProfile?.subject_levels?.programming || 0,
+    weekly_hours: initialProfile?.weekly_hours || 5,
+    preferred_session_minutes: initialProfile?.preferred_session_minutes || 30,
+    schedule_type: initialProfile?.schedule_type || 'regular',
+    schedule_details: initialProfile?.schedule_details || '',
+    energy_pattern: initialProfile?.energy_pattern || 'variable',
+    constraints_text: Array.isArray(initialProfile?.constraints) ? initialProfile.constraints.join(', ') : '',
+    explanation: initialProfile?.learning_preferences?.explanation || 'balanced',
+    practice: initialProfile?.learning_preferences?.practice || 'guided'
   });
 
   const canContinue = useMemo(() => {
-    if (step === 0) return form.display_name.trim() && form.primary_goal.trim();
+    if (step === 0) {
+      const age = Number(form.age);
+      return form.nickname.trim().length >= 2
+        && Number.isInteger(age)
+        && age >= 13
+        && age <= 100
+        && form.primary_goal.trim();
+    }
     if (step === 1) return form.learning_goals.length > 0;
     if (step === 2) return form.schedule_details.trim();
     return true;
@@ -53,21 +75,36 @@ export default function Onboarding({ user, onComplete }) {
   }
 
   async function finish() {
+    const numericAge = Number(form.age);
+    if (form.nickname.trim().length < 2 || form.nickname.trim().length > 32) {
+      setError('Никнейм должен содержать от 2 до 32 символов.');
+      return;
+    }
+    if (!Number.isInteger(numericAge) || numericAge < 13 || numericAge > 100) {
+      setError('Укажите возраст от 13 до 100 лет.');
+      return;
+    }
+
     setBusy(true);
     setError('');
     const constraints = form.constraints_text
       .split(',')
       .map((item) => item.trim())
       .filter(Boolean);
+    const nickname = form.nickname.trim();
     const profile = {
       user_id: user.id,
-      display_name: form.display_name.trim(),
+      display_name: nickname,
+      nickname,
+      age: numericAge,
+      age_range: ageRange(numericAge),
+      bio: form.bio.trim() || null,
+      tester_tier: 'gold',
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
       work_context: form.schedule_details.trim(),
       goals: form.learning_goals,
-      role: 'student',
+      role: initialProfile?.role || 'student',
       onboarding_completed: true,
-      age_range: form.age_range,
       primary_goal: form.primary_goal.trim(),
       learning_goals: form.learning_goals,
       subject_levels: { programming: Number(form.programming_level) },
@@ -82,7 +119,7 @@ export default function Onboarding({ user, onComplete }) {
         practice: form.practice
       },
       teacher_mode: true,
-      profile_version: 2,
+      profile_version: 3,
       updated_at: new Date().toISOString()
     };
 
@@ -97,7 +134,7 @@ export default function Onboarding({ user, onComplete }) {
         focus: form.learning_goals,
         weekly_hours: Number(form.weekly_hours),
         session_minutes: Number(form.preferred_session_minutes),
-        first_goal: 'Освоить переменные и последовательное выполнение Python',
+        first_goal: 'Пройти диагностическое занятие и получить первую карту навыков',
         rules: [
           'Начинать занятие с короткой диагностики.',
           'Не переходить дальше без самостоятельной задачи.',
@@ -121,7 +158,7 @@ export default function Onboarding({ user, onComplete }) {
   }
 
   const steps = [
-    { icon: UserRound, label: 'О вас' },
+    { icon: UserRound, label: 'Профиль' },
     { icon: Target, label: 'Цели и уровень' },
     { icon: CalendarDays, label: 'Расписание' },
     { icon: Brain, label: 'Формат обучения' }
@@ -132,11 +169,12 @@ export default function Onboarding({ user, onComplete }) {
       <section className="onboarding-shell">
         <aside className="onboarding-side">
           <div className="brand-lockup compact">
-            <div className="brand-symbol">АМ</div>
-            <div><b>Академия Макарова</b><span>Первичная настройка</span></div>
+            <div className="brand-symbol">НЗ</div>
+            <div><b>Новые Знания</b><span>by Макаров</span></div>
           </div>
-          <h1>Сначала Академия должна понять вашу реальную жизнь.</h1>
+          <h1>Сначала платформа должна понять вашу реальную жизнь.</h1>
           <p>Ответы определят длительность занятий, темп объяснений и начальный маршрут.</p>
+          <div className="onboarding-gold-status"><Crown /><div><b>Золотой тестер</b><span>Статус уже закреплён за вашим аккаунтом</span></div></div>
           <div className="onboarding-steps">
             {steps.map(({ icon: Icon, label }, index) => (
               <div key={label} className={index === step ? 'active' : index < step ? 'done' : ''}>
@@ -151,10 +189,11 @@ export default function Onboarding({ user, onComplete }) {
 
           {step === 0 && (
             <div className="form-step">
-              <h2>Кто будет учиться?</h2>
-              <p>Нам нужны только данные, влияющие на обучение.</p>
-              <label>Как к вам обращаться?<input value={form.display_name} onChange={(event) => patch('display_name', event.target.value)} placeholder="Имя" /></label>
-              <label>Возрастная группа<select value={form.age_range} onChange={(event) => patch('age_range', event.target.value)}><option value="under-18">До 18</option><option value="18-25">18–25</option><option value="26-35">26–35</option><option value="36-50">36–50</option><option value="50+">50+</option></select></label>
+              <h2>Оформите профиль</h2>
+              <p>Никнейм и описание будут видны в общем чате. Возраст останется приватным.</p>
+              <label>Никнейм<input maxLength="32" value={form.nickname} onChange={(event) => patch('nickname', event.target.value)} placeholder="Как вас называть" /></label>
+              <label>Возраст<input type="number" min="13" max="100" value={form.age} onChange={(event) => patch('age', event.target.value)} /></label>
+              <label>Коротко о себе<textarea maxLength="500" value={form.bio} onChange={(event) => patch('bio', event.target.value)} placeholder="Интересы, профессия, чему хотите научиться…" /></label>
               <label>Главная цель<textarea value={form.primary_goal} onChange={(event) => patch('primary_goal', event.target.value)} placeholder="Например: освоить Python и получить первый доход на фрилансе" /></label>
             </div>
           )}
@@ -162,7 +201,7 @@ export default function Onboarding({ user, onComplete }) {
           {step === 1 && (
             <div className="form-step">
               <h2>Что и с какой базы изучать?</h2>
-              <p>Можно выбрать несколько направлений. Первый MVP начнёт с Python.</p>
+              <p>Можно выбрать несколько направлений. Стартовый урок доступен по пяти основным предметам.</p>
               <div className="choice-grid">
                 {subjects.map(([slug, label]) => <button key={slug} className={form.learning_goals.includes(slug) ? 'selected' : ''} onClick={() => toggleGoal(slug)}>{form.learning_goals.includes(slug) && <Check />}{label}</button>)}
               </div>
@@ -177,7 +216,7 @@ export default function Onboarding({ user, onComplete }) {
               <label>Опишите обычную неделю<textarea value={form.schedule_details} onChange={(event) => patch('schedule_details', event.target.value)} placeholder="Работаю 5/2, свободен вечером; либо график меняется после смен…" /></label>
               <div className="two-columns">
                 <label>Часов в неделю<input type="number" min="1" max="40" value={form.weekly_hours} onChange={(event) => patch('weekly_hours', event.target.value)} /></label>
-                <label>Обычное занятие<select value={form.preferred_session_minutes} onChange={(event) => patch('preferred_session_minutes', event.target.value)}><option value="15">15 минут</option><option value="30">30 минут</option><option value="45">45 минут</option><option value="60">60 минут</option><option value="90">90 минут</option></select></label>
+                <label>Обычное занятие<select value={form.preferred_session_minutes} onChange={(event) => patch('preferred_session_minutes', event.target.value)}><option value="15">15 минут</option><option value="30">30 минут</option><option value="45">45 минут</option><option value="60">60 минут</option><option value="75">75 минут</option><option value="90">90 минут</option></select></label>
               </div>
             </div>
           )}
