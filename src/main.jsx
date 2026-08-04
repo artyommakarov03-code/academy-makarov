@@ -7,6 +7,7 @@ import GlobalIdeaHub from './components/GlobalIdeaHub';
 import TesterGreeting from './components/TesterGreeting';
 import './styles.css';
 import './experience-upgrade.css';
+import './community.css';
 
 createRoot(document.getElementById('root')).render(
   <>
