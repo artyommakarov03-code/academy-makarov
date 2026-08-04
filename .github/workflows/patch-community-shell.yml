@@ -1,0 +1,85 @@
+name: Integrate community shell
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/patch-community-shell.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch AppV2
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('src/AppV2.jsx')
+          source = path.read_text(encoding='utf-8')
+
+          replacements = [
+            (
+              "  Clock3,\n  Code2,\n  Gauge,",
+              "  Clock3,\n  Code2,\n  Crown,\n  Gauge,"
+            ),
+            (
+              "  LogOut,\n  Menu,\n  Play,",
+              "  LogOut,\n  Menu,\n  MessageCircle,\n  Play,"
+            ),
+            (
+              "import AdaptiveTutorSession from './components/AdaptiveTutorSession';\n",
+              "import AdaptiveTutorSession from './components/AdaptiveTutorSession';\nimport CommunityChat from './components/CommunityChat';\nimport EnhancedAccountPage from './components/EnhancedAccountPage';\n"
+            ),
+            (
+              "import { supabase } from './lib/supabase';\n",
+              "import { supabase } from './lib/supabase';\nimport { avatarPublicUrl } from './lib/profileMedia';\n"
+            ),
+            (
+              "  ['progress', 'Прогресс', BarChart3],\n  ['account', 'Аккаунт', Settings]",
+              "  ['progress', 'Прогресс', BarChart3],\n  ['chat', 'Общий чат', MessageCircle],\n  ['account', 'Аккаунт', Settings]"
+            ),
+            (
+              "if (user && profile && !profile.onboarding_completed) return <Onboarding user={user} onComplete={(newProfile) => { setProfile(newProfile); setMinutes(newProfile.preferred_session_minutes); }} />;",
+              "if (user && profile && !profile.onboarding_completed) return <Onboarding user={user} initialProfile={profile} onComplete={(newProfile) => { setProfile(newProfile); setMinutes(newProfile.preferred_session_minutes); }} />;"
+            ),
+            (
+              "<div className=\"sidebar-head\"><div className=\"brand-lockup compact\"><div className=\"brand-symbol\">АМ</div><div><b>Академия Макарова</b><span>{isDemo ? 'Инвесторское демо' : 'Персональная среда'}</span></div></div><button className=\"mobile-close\" onClick={() => setMenuOpen(false)}><X /></button></div>",
+              "<div className=\"sidebar-head\"><div className=\"brand-lockup compact\"><div className=\"brand-symbol\">НЗ</div><div><b>Новые Знания</b><span>by Макаров</span></div></div><button className=\"mobile-close\" onClick={() => setMenuOpen(false)}><X /></button></div>"
+            ),
+            (
+              "<nav>{navItems.map(([id, label, Icon]) => <button key={id} className={page === id ? 'active' : ''} onClick={() => { setPage(id); setMenuOpen(false); }}><Icon /><span>{label}</span>{id === 'tutor' && <i />}</button>)}</nav>",
+              "<nav>{navItems.filter(([id]) => !isDemo || id !== 'chat').map(([id, label, Icon]) => <button key={id} className={page === id ? 'active' : ''} onClick={() => { setPage(id); setMenuOpen(false); }}><Icon /><span>{label}</span>{id === 'tutor' && <i />}{id === 'chat' && !isDemo && <i className=\"community-nav-badge\" />}</button>)}</nav>"
+            ),
+            (
+              "<div className=\"sidebar-profile\"><div className=\"profile-avatar\">{activeProfile.display_name?.[0] || 'У'}</div><div><b>{activeProfile.display_name || 'Ученик'}</b><span>{isDemo ? 'Демо-профиль' : activeProfile.role === 'owner' ? 'Владелец' : 'Ученик'}</span></div></div>",
+              "<div className=\"sidebar-profile\"><div className=\"sidebar-profile-avatar\">{activeProfile.avatar_path ? <img src={avatarPublicUrl(activeProfile.avatar_path, activeProfile.updated_at)} alt=\"\" /> : (activeProfile.nickname || activeProfile.display_name)?.[0] || 'У'}</div><div className=\"sidebar-profile-meta\"><b>{activeProfile.nickname || activeProfile.display_name || 'Ученик'}</b><span className={!isDemo && activeProfile.role !== 'owner' ? 'sidebar-gold-label' : ''}>{isDemo ? 'Демо-профиль' : activeProfile.role === 'owner' ? 'Владелец' : <><Crown /> Золотой тестер</>}</span></div></div>"
+            ),
+            (
+              "{page === 'account' && <AccountPage profile={activeProfile} isDemo={isDemo} onProfileUpdate={(updated) => isDemo ? setDemoProfile(updated) : setProfile(updated)} onExitDemo={exitDemo} />}",
+              "{page === 'chat' && <CommunityChat user={user} profile={activeProfile} isDemo={isDemo} />}\n        {page === 'account' && <EnhancedAccountPage profile={activeProfile} user={user} isDemo={isDemo} onProfileUpdate={(updated) => isDemo ? setDemoProfile(updated) : setProfile(updated)} onExitDemo={exitDemo} />}"
+            ),
+            (
+              "if (loading) return <div className=\"full-loader\"><div className=\"brand-symbol\">АМ</div><span>Загружаю Академию…</span></div>;",
+              "if (loading) return <div className=\"full-loader\"><div className=\"brand-symbol\">НЗ</div><span>Загружаю Новые Знания…</span></div>;"
+            )
+          ]
+
+          for old, new in replacements:
+            if old not in source:
+              raise SystemExit(f'Pattern not found: {old[:100]}')
+            source = source.replace(old, new, 1)
+
+          path.write_text(source, encoding='utf-8')
+          PY
+      - name: Commit integration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/AppV2.jsx
+          git commit -m "Integrate gold tester profiles and community chat"
+          git push
