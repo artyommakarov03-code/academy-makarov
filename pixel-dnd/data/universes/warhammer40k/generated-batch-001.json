@@ -1,0 +1,27 @@
+{
+  "batch_id": "wh40k-batch-001",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "generated_count": 10,
+  "sheet": {
+    "asset_key": "wh40k_batch_001_sheet",
+    "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet",
+    "source_width": 1536,
+    "source_height": 1024,
+    "display_width": 320,
+    "display_height": 213
+  },
+  "assets": [
+    {"asset_key":"wh40k_w1_001_main_menu","title_ru":"Главное меню","prompt_number":1,"sheet_crop":[18,118,315,443],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_w1_001_main_menu","render_mode":"direct"},
+    {"asset_key":"wh40k_w1_002_combat_hud","title_ru":"Боевой HUD","prompt_number":2,"sheet_crop":[331,139,621,442],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_w1_002_combat_hud","render_mode":"direct"},
+    {"asset_key":"wh40k_w1_003_character_screen","title_ru":"Экран персонажа","prompt_number":3,"sheet_crop":[642,124,935,442],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"},
+    {"asset_key":"wh40k_w1_004_faction_select","title_ru":"Выбор фракции","prompt_number":4,"sheet_crop":[951,124,1229,443],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"},
+    {"asset_key":"wh40k_w1_005_inventory","title_ru":"Инвентарь","prompt_number":5,"sheet_crop":[1239,138,1517,443],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"},
+    {"asset_key":"wh40k_w1_006_quest_log","title_ru":"Журнал заданий","prompt_number":6,"sheet_crop":[18,563,315,932],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"},
+    {"asset_key":"wh40k_w1_007_sector_map","title_ru":"Карта сектора","prompt_number":7,"sheet_crop":[331,563,621,932],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"},
+    {"asset_key":"wh40k_w1_008_assault_sprite","title_ru":"Спрайт-лист штурмовика","prompt_number":8,"sheet_crop":[639,556,936,933],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"},
+    {"asset_key":"wh40k_w1_009_hive_map","title_ru":"Карта города-улья","prompt_number":9,"sheet_crop":[951,559,1228,932],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"},
+    {"asset_key":"wh40k_w1_010_weapon_effects","title_ru":"Эффекты выстрелов","prompt_number":10,"sheet_crop":[1240,565,1518,932],"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet","render_mode":"sheet_crop"}
+  ]
+}
