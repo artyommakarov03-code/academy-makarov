@@ -1,0 +1,19 @@
+{
+  "batch_key": "wh40k-batch-011",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Отдельные игровые иконки 41–48",
+  "generated_count": 8,
+  "storage": "supabase_game_assets",
+  "assets": [
+    {"asset_key":"wh40k_icon_exit_door","title_ru":"Выход","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_exit_door"},
+    {"asset_key":"wh40k_icon_power_button","title_ru":"Питание","category":"systems","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_power_button"},
+    {"asset_key":"wh40k_icon_footprints","title_ru":"Следы","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_footprints"},
+    {"asset_key":"wh40k_icon_supply_crate","title_ru":"Контейнер снабжения","category":"equipment","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_supply_crate"},
+    {"asset_key":"wh40k_icon_dialogue","title_ru":"Диалог","category":"ui","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_dialogue"},
+    {"asset_key":"wh40k_icon_impact_burst","title_ru":"Столкновение","category":"effects","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_impact_burst"},
+    {"asset_key":"wh40k_icon_enemy_skull","title_ru":"Вражеская угроза","category":"hazards","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_enemy_skull"},
+    {"asset_key":"wh40k_icon_objective_star","title_ru":"Особая цель","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_objective_star"}
+  ]
+}
