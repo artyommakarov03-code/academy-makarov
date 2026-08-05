@@ -1,0 +1,114 @@
+{
+  "batch_key": "wh40k-batch-003",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "generated_count": 13,
+  "storage": "supabase_game_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_atlas_aeldari_drukhari",
+      "title_ru": "Аэльдари и Друкхари",
+      "category": "units",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_aeldari_drukhari"
+    },
+    {
+      "asset_key": "wh40k_atlas_chaos_classes",
+      "title_ru": "Классы Хаоса",
+      "category": "units",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_chaos_classes"
+    },
+    {
+      "asset_key": "wh40k_atlas_creator_primarch_emperor",
+      "title_ru": "Примарх и Император",
+      "category": "creator",
+      "render_mode": "direct",
+      "creator_only": true,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_creator_primarch_emperor"
+    },
+    {
+      "asset_key": "wh40k_atlas_icons_vehicles_ships_stations",
+      "title_ru": "Иконки техники, кораблей и станций",
+      "category": "icons",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_icons_vehicles_ships_stations"
+    },
+    {
+      "asset_key": "wh40k_atlas_imperium_classes",
+      "title_ru": "Классы Империума",
+      "category": "units",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_imperium_classes"
+    },
+    {
+      "asset_key": "wh40k_atlas_imperium_vehicles",
+      "title_ru": "Техника Империума",
+      "category": "vehicles",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_imperium_vehicles"
+    },
+    {
+      "asset_key": "wh40k_atlas_necrons_expanded",
+      "title_ru": "Расширенные некроны",
+      "category": "units",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_necrons_expanded"
+    },
+    {
+      "asset_key": "wh40k_atlas_orks_necrons_tyranids",
+      "title_ru": "Орки, некроны и тираниды",
+      "category": "units",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_orks_necrons_tyranids"
+    },
+    {
+      "asset_key": "wh40k_atlas_ships_and_cruisers",
+      "title_ru": "Корабли и крейсера",
+      "category": "fleet",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_ships_and_cruisers"
+    },
+    {
+      "asset_key": "wh40k_atlas_space_marines_and_elites",
+      "title_ru": "Космодесант и имперские элиты",
+      "category": "units",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_space_marines_and_elites"
+    },
+    {
+      "asset_key": "wh40k_atlas_space_stations",
+      "title_ru": "Космические станции",
+      "category": "stations",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_space_stations"
+    },
+    {
+      "asset_key": "wh40k_atlas_tau_and_aeldari",
+      "title_ru": "Тау и Аэльдари",
+      "category": "units",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_tau_and_aeldari"
+    },
+    {
+      "asset_key": "wh40k_atlas_xenos_chaos_vehicles",
+      "title_ru": "Техника ксеносов и Хаоса",
+      "category": "vehicles",
+      "render_mode": "direct",
+      "creator_only": false,
+      "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_atlas_xenos_chaos_vehicles"
+    }
+  ]
+}
