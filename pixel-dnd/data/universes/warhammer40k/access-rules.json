@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "language": "ru",
+  "creator_flag": "pixelDndCreator",
+  "creator_query_parameter": "creator=1",
+  "hidden_from_non_creator": true,
+  "creator_only_characters": [
+    "Император",
+    "Примарх",
+    "Сестра Битвы",
+    "Кустодий",
+    "Серый Рыцарь",
+    "Сестра Тишины"
+  ],
+  "creator_only_factions": [
+    "Адепта Сороритас",
+    "Адепта Кустодес",
+    "Серые Рыцари",
+    "Сёстры Тишины"
+  ],
+  "public_characters_include_necrons": true,
+  "security_note_ru": "Текущий MVP скрывает закрытые варианты на клиенте. Для полноценной защиты следует проверять creator-роль также на сервере и в базе данных."
+}
