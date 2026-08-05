@@ -1,0 +1,21 @@
+{
+  "batch_key": "wh40k-batch-005",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Характеристики, классы, оснащение и мир",
+  "generated_count": 10,
+  "storage": "supabase_game_assets",
+  "assets": [
+    {"asset_key":"wh40k_system_attributes_skills","title_ru":"Характеристики и навыки персонажа","category":"systems","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_system_attributes_skills"},
+    {"asset_key":"wh40k_system_resources_scales","title_ru":"Ресурсы и шкалы HUD","category":"systems","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_system_resources_scales"},
+    {"asset_key":"wh40k_classes_imperium_detailed","title_ru":"Подробные классы Империума","category":"classes","creator_only":true,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_classes_imperium_detailed"},
+    {"asset_key":"wh40k_subclasses_imperium_detailed","title_ru":"Подклассы Империума","category":"classes","creator_only":true,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_subclasses_imperium_detailed"},
+    {"asset_key":"wh40k_classes_xenos_chaos_detailed","title_ru":"Классы ксеносов и Хаоса","category":"classes","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_classes_xenos_chaos_detailed"},
+    {"asset_key":"wh40k_factions_ranks_reputation","title_ru":"Фракции, ранги и репутация","category":"systems","creator_only":true,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_factions_ranks_reputation"},
+    {"asset_key":"wh40k_equipment_rarity_detailed","title_ru":"Оснащение, редкость и качество","category":"equipment","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_equipment_rarity_detailed"},
+    {"asset_key":"wh40k_equipment_slots_modules","title_ru":"Слоты экипировки и модули","category":"equipment","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_equipment_slots_modules"},
+    {"asset_key":"wh40k_map_location_objects","title_ru":"Объекты карты и локации","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_location_objects"},
+    {"asset_key":"wh40k_world_modules_economy","title_ru":"Мир, модули и экономика","category":"systems","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_world_modules_economy"}
+  ]
+}
