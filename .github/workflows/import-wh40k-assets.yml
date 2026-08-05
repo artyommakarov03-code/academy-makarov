@@ -1,0 +1,33 @@
+name: Import WH40K assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pixel-dnd-assets/upload-012-020/_READY'
+
+permissions:
+  contents: write
+
+jobs:
+  import-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild archive
+        run: |
+          set -euo pipefail
+          cat pixel-dnd-assets/upload-012-020/chunk-*.b64 | base64 -d > /tmp/wh40k-assets.zip
+          unzip -o /tmp/wh40k-assets.zip -d pixel-dnd
+          test "$(find pixel-dnd/assets/warhammer40k/production -name '*.webp' | wc -l)" -eq 86
+          test -f pixel-dnd/data/universes/warhammer40k/generated-batch-020.json
+          test -f pixel-dnd/data/universes/warhammer40k/generated-index.json
+      - name: Commit imported assets
+        run: |
+          set -euo pipefail
+          rm -rf pixel-dnd-assets/upload-012-020
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pixel-dnd .github/workflows/import-wh40k-assets.yml pixel-dnd-assets || true
+          git commit -m 'Import 86 cut Warhammer assets [skip ci]'
+          git push
