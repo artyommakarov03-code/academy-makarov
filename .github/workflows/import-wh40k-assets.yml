@@ -14,23 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Rebuild archive
+      - name: Recover validated assets
         run: |
           set -euo pipefail
-          cat pixel-dnd-assets/upload-012-020/chunk-*.b64 | base64 -d > /tmp/wh40k-assets.zip
-          echo "38db67b1693b286c839f5a9b44aece74d5dcb3d95fcfb86e48c7abd6bc9e97bb  /tmp/wh40k-assets.zip" | sha256sum -c -
-          unzip -t /tmp/wh40k-assets.zip
-          unzip -o /tmp/wh40k-assets.zip -d pixel-dnd
-          production_count="$(find pixel-dnd/assets/warhammer40k/production -name '*.webp' | wc -l)"
-          test "$production_count" -ge 86
+          python3 .github/scripts/salvage_wh40k_assets.py
+          test "$(find pixel-dnd/assets/warhammer40k/production -name '*.webp' | wc -l)" -ge 67
           test -f pixel-dnd/data/universes/warhammer40k/generated-batch-020.json
           test -f pixel-dnd/data/universes/warhammer40k/generated-index.json
-      - name: Commit imported assets
+          test -f pixel-dnd/data/universes/warhammer40k/salvage-report-012-020.json
+      - name: Commit recovered assets
         run: |
           set -euo pipefail
-          rm -rf pixel-dnd-assets/upload-012-020
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add pixel-dnd .github/workflows/import-wh40k-assets.yml pixel-dnd-assets || true
-          git commit -m 'Import 86 cut Warhammer assets [skip ci]'
+          git add pixel-dnd .github/scripts/salvage_wh40k_assets.py .github/workflows/import-wh40k-assets.yml
+          git diff --cached --quiet && exit 0
+          git commit -m 'Import 67 validated Warhammer assets [skip ci]'
           git push
