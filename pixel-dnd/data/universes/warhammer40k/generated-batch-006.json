@@ -1,0 +1,29 @@
+{
+  "batch_key": "wh40k-batch-006",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Карты, интерфейс, анимации и спрайты",
+  "generated_count": 18,
+  "storage": "supabase_game_assets",
+  "assets": [
+    {"asset_key":"wh40k_animations_sheet","title_ru":"Примеры покадровых анимаций","category":"animations","creator_only":false,"mime_type":"image/webp","width":96,"height":53,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_animations_sheet"},
+    {"asset_key":"wh40k_interface_sheet","title_ru":"Интерфейс игрового модуля","category":"ui","creator_only":false,"mime_type":"image/webp","width":96,"height":46,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_interface_sheet"},
+    {"asset_key":"wh40k_factions_missions_sheet","title_ru":"Фракции и миссии","category":"systems","creator_only":false,"mime_type":"image/webp","width":96,"height":10,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_factions_missions_sheet"},
+    {"asset_key":"wh40k_creator_sheet","title_ru":"Панель создателя","category":"creator","creator_only":true,"mime_type":"image/webp","width":96,"height":42,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_creator_sheet"},
+    {"asset_key":"wh40k_catalog_overview","title_ru":"Общий каталог ассетов","category":"overview","creator_only":false,"mime_type":"image/webp","width":96,"height":64,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_catalog_overview"},
+    {"asset_key":"wh40k_map_hive_city","title_ru":"Город-улей","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_hive_city"},
+    {"asset_key":"wh40k_map_forge_world","title_ru":"Мир-кузня","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_forge_world"},
+    {"asset_key":"wh40k_map_ork_fortress","title_ru":"Орочья крепость","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_ork_fortress"},
+    {"asset_key":"wh40k_map_necron_tomb","title_ru":"Некронская гробница","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_necron_tomb"},
+    {"asset_key":"wh40k_map_tyranid_nest","title_ru":"Тиранидское гнездо","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_tyranid_nest"},
+    {"asset_key":"wh40k_map_derelict_ship","title_ru":"Корабль-дереликт","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_derelict_ship"},
+    {"asset_key":"wh40k_map_tau_outpost","title_ru":"Аванпост Тау","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_tau_outpost"},
+    {"asset_key":"wh40k_map_desert_world","title_ru":"Пустынный мир","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_desert_world"},
+    {"asset_key":"wh40k_map_omnissiah_temple","title_ru":"Храм Омниссии","category":"maps","creator_only":false,"mime_type":"image/webp","width":96,"height":72,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_map_omnissiah_temple"},
+    {"asset_key":"wh40k_sprite_heavy_assault","title_ru":"Тяжёлый штурмовик — спрайт-лист","category":"units","creator_only":false,"mime_type":"image/webp","width":96,"height":64,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_sprite_heavy_assault"},
+    {"asset_key":"wh40k_sprite_unsanctioned_psyker_full","title_ru":"Незарегистрированный псайкер — полный спрайт-лист","category":"units","creator_only":false,"mime_type":"image/webp","width":96,"height":64,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_sprite_unsanctioned_psyker_full"},
+    {"asset_key":"wh40k_sprite_officer_full","title_ru":"Офицер — полный спрайт-лист","category":"units","creator_only":false,"mime_type":"image/webp","width":96,"height":64,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_sprite_officer_full"},
+    {"asset_key":"wh40k_sprite_assassin_full","title_ru":"Ассасин — полный спрайт-лист","category":"units","creator_only":false,"mime_type":"image/webp","width":96,"height":64,"render_mode":"direct","url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_sprite_assassin_full"}
+  ]
+}
