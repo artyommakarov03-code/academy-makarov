@@ -1,0 +1,21 @@
+{
+  "batch_key": "wh40k-batch-008",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Отдельные игровые иконки 11–20",
+  "generated_count": 10,
+  "storage": "supabase_game_assets",
+  "assets": [
+    {"asset_key":"wh40k_icon_fire","title_ru":"Огонь","category":"effects","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_fire"},
+    {"asset_key":"wh40k_icon_ammo_shell","title_ru":"Боеприпас","category":"equipment","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_ammo_shell"},
+    {"asset_key":"wh40k_icon_reconnaissance","title_ru":"Разведка","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_reconnaissance"},
+    {"asset_key":"wh40k_icon_power_energy","title_ru":"Энергия","category":"resources","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_power_energy"},
+    {"asset_key":"wh40k_icon_radiation","title_ru":"Радиация","category":"hazards","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_radiation"},
+    {"asset_key":"wh40k_icon_ammo_reserve","title_ru":"Боезапас","category":"resources","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_ammo_reserve"},
+    {"asset_key":"wh40k_icon_target_lock","title_ru":"Цель","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_target_lock"},
+    {"asset_key":"wh40k_icon_time","title_ru":"Время","category":"systems","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_time"},
+    {"asset_key":"wh40k_icon_cover","title_ru":"Укрытие","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_cover"},
+    {"asset_key":"wh40k_icon_medkit","title_ru":"Лечение","category":"resources","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_medkit"}
+  ]
+}
