@@ -1,0 +1,5 @@
+batch=wh40k-batch-001
+source=wh40k_batch_001_sheet
+assets=8
+mode=scaled_sheet_crop_to_standalone_webp
+triggered_at=2026-08-06T02:05:00+03:00
