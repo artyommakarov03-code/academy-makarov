@@ -1,0 +1,10 @@
+{
+  "universe": "warhammer40k",
+  "language": "ru",
+  "updated_at": "2026-08-05T19:05:00+03:00",
+  "total_generated": 20,
+  "manifests": [
+    "/data/universes/warhammer40k/generated-batch-001.json",
+    "/data/universes/warhammer40k/generated-batch-002.json"
+  ]
+}
