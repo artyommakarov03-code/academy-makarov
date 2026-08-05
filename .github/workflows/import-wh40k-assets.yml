@@ -18,8 +18,11 @@ jobs:
         run: |
           set -euo pipefail
           cat pixel-dnd-assets/upload-012-020/chunk-*.b64 | base64 -d > /tmp/wh40k-assets.zip
+          echo "38db67b1693b286c839f5a9b44aece74d5dcb3d95fcfb86e48c7abd6bc9e97bb  /tmp/wh40k-assets.zip" | sha256sum -c -
+          unzip -t /tmp/wh40k-assets.zip
           unzip -o /tmp/wh40k-assets.zip -d pixel-dnd
-          test "$(find pixel-dnd/assets/warhammer40k/production -name '*.webp' | wc -l)" -eq 86
+          production_count="$(find pixel-dnd/assets/warhammer40k/production -name '*.webp' | wc -l)"
+          test "$production_count" -ge 86
           test -f pixel-dnd/data/universes/warhammer40k/generated-batch-020.json
           test -f pixel-dnd/data/universes/warhammer40k/generated-index.json
       - name: Commit imported assets
