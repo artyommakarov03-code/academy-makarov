@@ -1,0 +1,21 @@
+{
+  "batch_key": "wh40k-batch-009",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Отдельные игровые иконки 21–30",
+  "generated_count": 10,
+  "storage": "supabase_game_assets",
+  "assets": [
+    {"asset_key":"wh40k_icon_skull_badge","title_ru":"Череп-знак","category":"threats","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_skull_badge"},
+    {"asset_key":"wh40k_icon_skull_rank","title_ru":"Череп ранга","category":"ranks","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_skull_rank"},
+    {"asset_key":"wh40k_icon_imperial_medallion","title_ru":"Имперский медальон","category":"factions","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_imperial_medallion"},
+    {"asset_key":"wh40k_icon_blood_splatter","title_ru":"Кровавое попадание","category":"effects","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_blood_splatter"},
+    {"asset_key":"wh40k_icon_skull_warning","title_ru":"Смертельная угроза","category":"hazards","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_skull_warning"},
+    {"asset_key":"wh40k_icon_observation_eye","title_ru":"Наблюдение","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_observation_eye"},
+    {"asset_key":"wh40k_icon_secure_lock","title_ru":"Заперто","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_secure_lock"},
+    {"asset_key":"wh40k_icon_mission_map","title_ru":"Карта задания","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_mission_map"},
+    {"asset_key":"wh40k_icon_secondary_target","title_ru":"Вторичная цель","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_secondary_target"},
+    {"asset_key":"wh40k_icon_stealth","title_ru":"Скрытность","category":"map","creator_only":false,"render_mode":"direct","mime_type":"image/webp","width":32,"height":32,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_stealth"}
+  ]
+}
