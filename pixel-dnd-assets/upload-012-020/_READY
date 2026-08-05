@@ -1,6 +1,8 @@
 archive=wh40k-assets-012-020-opt.zip
 chunks=20
-assets=86
-sha256=38db67b1693b286c839f5a9b44aece74d5dcb3d95fcfb86e48c7abd6bc9e97bb
-retry=2026-08-06T01:19:00+03:00
-validation=fixed
+assets_intended=86
+assets_validated=67
+manifests=9
+index=1
+mode=partial_crc_salvage
+retry=2026-08-06T01:43:00+03:00
