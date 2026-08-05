@@ -1,0 +1,196 @@
+{
+  "batch_key": "wh40k-batch-002",
+  "source_url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_002_sheet",
+  "source_reference_size": [
+    1536,
+    1024
+  ],
+  "downloaded_size": [
+    256,
+    171
+  ],
+  "upscale": 4,
+  "generated_count": 10,
+  "assets": [
+    {
+      "asset_key": "wh40k_w1_011_forge_world",
+      "crop_box_on_preview": [
+        6,
+        20,
+        54,
+        82
+      ],
+      "natural_size": [
+        48,
+        62
+      ],
+      "output_size": [
+        192,
+        248
+      ],
+      "bytes": 6806
+    },
+    {
+      "asset_key": "wh40k_w1_012_ork_fortress",
+      "crop_box_on_preview": [
+        57,
+        20,
+        104,
+        82
+      ],
+      "natural_size": [
+        47,
+        62
+      ],
+      "output_size": [
+        188,
+        248
+      ],
+      "bytes": 5980
+    },
+    {
+      "asset_key": "wh40k_w1_013_necron_tomb",
+      "crop_box_on_preview": [
+        107,
+        20,
+        153,
+        82
+      ],
+      "natural_size": [
+        46,
+        62
+      ],
+      "output_size": [
+        184,
+        248
+      ],
+      "bytes": 5922
+    },
+    {
+      "asset_key": "wh40k_w1_014_tyranid_bioship",
+      "crop_box_on_preview": [
+        155,
+        20,
+        201,
+        82
+      ],
+      "natural_size": [
+        46,
+        62
+      ],
+      "output_size": [
+        184,
+        248
+      ],
+      "bytes": 6498
+    },
+    {
+      "asset_key": "wh40k_w1_015_derelict_ship",
+      "crop_box_on_preview": [
+        203,
+        20,
+        250,
+        82
+      ],
+      "natural_size": [
+        47,
+        62
+      ],
+      "output_size": [
+        188,
+        248
+      ],
+      "bytes": 6044
+    },
+    {
+      "asset_key": "wh40k_w1_016_location_thumbnails",
+      "crop_box_on_preview": [
+        6,
+        88,
+        54,
+        147
+      ],
+      "natural_size": [
+        48,
+        59
+      ],
+      "output_size": [
+        192,
+        236
+      ],
+      "bytes": 6456
+    },
+    {
+      "asset_key": "wh40k_w1_017_imperial_assault",
+      "crop_box_on_preview": [
+        57,
+        88,
+        104,
+        147
+      ],
+      "natural_size": [
+        47,
+        59
+      ],
+      "output_size": [
+        188,
+        236
+      ],
+      "bytes": 5534
+    },
+    {
+      "asset_key": "wh40k_w1_018_melee_fighter",
+      "crop_box_on_preview": [
+        107,
+        88,
+        153,
+        147
+      ],
+      "natural_size": [
+        46,
+        59
+      ],
+      "output_size": [
+        184,
+        236
+      ],
+      "bytes": 5582
+    },
+    {
+      "asset_key": "wh40k_w1_019_sanctioned_psyker",
+      "crop_box_on_preview": [
+        155,
+        88,
+        201,
+        147
+      ],
+      "natural_size": [
+        46,
+        59
+      ],
+      "output_size": [
+        184,
+        236
+      ],
+      "bytes": 6008
+    },
+    {
+      "asset_key": "wh40k_w1_020_unsanctioned_psyker",
+      "crop_box_on_preview": [
+        203,
+        88,
+        250,
+        147
+      ],
+      "natural_size": [
+        47,
+        59
+      ],
+      "output_size": [
+        188,
+        236
+      ],
+      "bytes": 5828
+    }
+  ]
+}

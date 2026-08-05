@@ -4,25 +4,204 @@
   "language": "ru",
   "status": "active",
   "generated_count": 10,
-  "prompt_range": [11, 20],
+  "prompt_range": [
+    11,
+    20
+  ],
   "sheet": {
     "asset_key": "wh40k_batch_002_sheet",
     "url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_002_sheet",
     "source_width": 1536,
     "source_height": 1024,
     "display_width": 256,
-    "display_height": 171
+    "display_height": 171,
+    "actual_download_size": [
+      256,
+      171
+    ]
   },
   "assets": [
-    {"asset_key":"wh40k_w1_011_forge_world","title_ru":"Мир-кузня","category":"maps","prompt_number":11,"sheet_crop":[36,119,326,492],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_012_ork_fortress","title_ru":"Орочья крепость","category":"maps","prompt_number":12,"sheet_crop":[344,119,625,492],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_013_necron_tomb","title_ru":"Некронская гробница","category":"maps","prompt_number":13,"sheet_crop":[641,119,917,492],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_014_tyranid_bioship","title_ru":"Тиранидский биокорабль","category":"maps","prompt_number":14,"sheet_crop":[929,119,1205,492],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_015_derelict_ship","title_ru":"Корабль-дереликт","category":"maps","prompt_number":15,"sheet_crop":[1218,119,1501,492],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_016_location_thumbnails","title_ru":"Миниатюры локаций","category":"maps","prompt_number":16,"sheet_crop":[36,526,326,882],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_017_imperial_assault","title_ru":"Штурмовик Империума","category":"units","prompt_number":17,"sheet_crop":[344,526,625,882],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_018_melee_fighter","title_ru":"Боец ближнего боя","category":"units","prompt_number":18,"sheet_crop":[641,526,917,882],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_019_sanctioned_psyker","title_ru":"Санкционированный псайкер","category":"units","prompt_number":19,"sheet_crop":[929,526,1205,882],"render_mode":"sheet_crop"},
-    {"asset_key":"wh40k_w1_020_unsanctioned_psyker","title_ru":"Незарегистрированный псайкер","category":"units","prompt_number":20,"sheet_crop":[1218,526,1501,882],"render_mode":"sheet_crop"}
-  ]
+    {
+      "asset_key": "wh40k_w1_011_forge_world",
+      "title_ru": "Мир-кузня",
+      "category": "maps",
+      "prompt_number": 11,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 192,
+      "height": 248,
+      "url": "/assets/warhammer40k/production/wh40k_w1_011_forge_world.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        36,
+        119,
+        326,
+        492
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_012_ork_fortress",
+      "title_ru": "Орочья крепость",
+      "category": "maps",
+      "prompt_number": 12,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 188,
+      "height": 248,
+      "url": "/assets/warhammer40k/production/wh40k_w1_012_ork_fortress.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        344,
+        119,
+        625,
+        492
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_013_necron_tomb",
+      "title_ru": "Некронская гробница",
+      "category": "maps",
+      "prompt_number": 13,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 184,
+      "height": 248,
+      "url": "/assets/warhammer40k/production/wh40k_w1_013_necron_tomb.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        641,
+        119,
+        917,
+        492
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_014_tyranid_bioship",
+      "title_ru": "Тиранидский биокорабль",
+      "category": "maps",
+      "prompt_number": 14,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 184,
+      "height": 248,
+      "url": "/assets/warhammer40k/production/wh40k_w1_014_tyranid_bioship.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        929,
+        119,
+        1205,
+        492
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_015_derelict_ship",
+      "title_ru": "Корабль-дереликт",
+      "category": "maps",
+      "prompt_number": 15,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 188,
+      "height": 248,
+      "url": "/assets/warhammer40k/production/wh40k_w1_015_derelict_ship.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        1218,
+        119,
+        1501,
+        492
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_016_location_thumbnails",
+      "title_ru": "Миниатюры локаций",
+      "category": "maps",
+      "prompt_number": 16,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 192,
+      "height": 236,
+      "url": "/assets/warhammer40k/production/wh40k_w1_016_location_thumbnails.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        36,
+        526,
+        326,
+        882
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_017_imperial_assault",
+      "title_ru": "Штурмовик Империума",
+      "category": "units",
+      "prompt_number": 17,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 188,
+      "height": 236,
+      "url": "/assets/warhammer40k/production/wh40k_w1_017_imperial_assault.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        344,
+        526,
+        625,
+        882
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_018_melee_fighter",
+      "title_ru": "Боец ближнего боя",
+      "category": "units",
+      "prompt_number": 18,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 184,
+      "height": 236,
+      "url": "/assets/warhammer40k/production/wh40k_w1_018_melee_fighter.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        641,
+        526,
+        917,
+        882
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_019_sanctioned_psyker",
+      "title_ru": "Санкционированный псайкер",
+      "category": "units",
+      "prompt_number": 19,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 184,
+      "height": 236,
+      "url": "/assets/warhammer40k/production/wh40k_w1_019_sanctioned_psyker.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        929,
+        526,
+        1205,
+        882
+      ]
+    },
+    {
+      "asset_key": "wh40k_w1_020_unsanctioned_psyker",
+      "title_ru": "Незарегистрированный псайкер",
+      "category": "units",
+      "prompt_number": 20,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 188,
+      "height": 236,
+      "url": "/assets/warhammer40k/production/wh40k_w1_020_unsanctioned_psyker.webp",
+      "source": "cut-from-batch-002-sheet-preview",
+      "original_sheet_crop": [
+        1218,
+        526,
+        1501,
+        882
+      ]
+    }
+  ],
+  "storage": "github_static_assets",
+  "cut_from_sheet": true
 }
