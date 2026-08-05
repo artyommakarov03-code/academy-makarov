@@ -54,8 +54,19 @@ function restoreGeneratedBundle() {
   }
 }
 
+function installOptionalLoaders() {
+  const indexPath = join(root, 'index.html');
+  if (!existsSync(indexPath)) return;
+  let html = readFileSync(indexPath, 'utf8');
+  if (!html.includes('warhammer-loader.js')) {
+    html = html.replace('</body>', '  <script src="warhammer-loader.js" defer></script>\n</body>');
+    writeFileSync(indexPath, html);
+  }
+}
+
 restoreBaseClient();
 restoreGeneratedBundle();
+installOptionalLoaders();
 
 const envPath = join(root, '.env');
 if (existsSync(envPath)) {
@@ -96,12 +107,11 @@ function allowed(req) {
 }
 
 async function callOpenAI({ roomId, message, campaign }) {
-  const previous = sessions.get(roomId);
   const response = await fetch('https://api.openai.com/v1/responses', {
     method:'POST',
     headers:{Authorization:`Bearer ${process.env.OPENAI_API_KEY}`,'Content-Type':'application/json'},
     body:JSON.stringify({
-      model, store:true, previous_response_id:previous, max_output_tokens:maxOutputTokens, reasoning:{effort:'low'},
+      model, store:true, previous_response_id:sessions.get(roomId), max_output_tokens:maxOutputTokens, reasoning:{effort:'low'},
       instructions:[
         'Ты опытный мастер настольных ролевых игр. Учитывай выбранную вселенную.',
         'Для мира «Мрачная галактика» веди суровую готическую научную фантастику: укрытия, мораль, пси-опасность и фракционные последствия.',
