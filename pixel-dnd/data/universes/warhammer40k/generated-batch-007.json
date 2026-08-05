@@ -1,0 +1,22 @@
+{
+  "batch_key": "wh40k-batch-007",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Отдельные игровые иконки — партия 1",
+  "generated_count": 10,
+  "storage": "supabase_game_assets",
+  "icon_size": 32,
+  "assets": [
+    {"asset_key":"wh40k_icon_health","title_ru":"Здоровье","category":"resources","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_health"},
+    {"asset_key":"wh40k_icon_armor","title_ru":"Броня","category":"resources","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_armor"},
+    {"asset_key":"wh40k_icon_energy_shield","title_ru":"Энергетический щит","category":"resources","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_energy_shield"},
+    {"asset_key":"wh40k_icon_combat","title_ru":"Боевая сцена","category":"map","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_combat"},
+    {"asset_key":"wh40k_icon_strength","title_ru":"Сила","category":"attributes","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_strength"},
+    {"asset_key":"wh40k_icon_knowledge","title_ru":"Знание","category":"attributes","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_knowledge"},
+    {"asset_key":"wh40k_icon_psyker","title_ru":"Пси-энергия","category":"resources","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_psyker"},
+    {"asset_key":"wh40k_icon_corruption","title_ru":"Порча","category":"status","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_corruption"},
+    {"asset_key":"wh40k_icon_imperium_affiliation","title_ru":"Империум","category":"factions","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_imperium_affiliation"},
+    {"asset_key":"wh40k_icon_warp_energy","title_ru":"Варп-энергия","category":"resources","render_mode":"direct","creator_only":false,"url":"https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_icon_warp_energy"}
+  ]
+}
