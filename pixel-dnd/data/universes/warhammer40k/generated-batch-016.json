@@ -1,0 +1,131 @@
+{
+  "batch_key": "wh40k-batch-016",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Нарезанные игровые ассеты 41–50",
+  "generated_count": 10,
+  "storage": "github_static_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_resource_health_state_4",
+      "title_ru": "Здоровье: состояние 4",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_health_state_4.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_armor",
+      "title_ru": "Броня",
+      "category": "resources",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_resource_armor.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_armor_state_1",
+      "title_ru": "Броня: состояние 1",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_armor_state_1.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_armor_state_2",
+      "title_ru": "Броня: состояние 2",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_armor_state_2.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_armor_state_3",
+      "title_ru": "Броня: состояние 3",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_armor_state_3.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_armor_state_4",
+      "title_ru": "Броня: состояние 4",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_armor_state_4.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_shield",
+      "title_ru": "Щит",
+      "category": "resources",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_resource_shield.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_shield_state_1",
+      "title_ru": "Щит: состояние 1",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_shield_state_1.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_shield_state_2",
+      "title_ru": "Щит: состояние 2",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_shield_state_2.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_shield_state_3",
+      "title_ru": "Щит: состояние 3",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_shield_state_3.webp",
+      "source": "github-production-assets"
+    }
+  ]
+}

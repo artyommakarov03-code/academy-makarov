@@ -1,0 +1,131 @@
+{
+  "batch_key": "wh40k-batch-014",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Нарезанные игровые ассеты 21–30",
+  "generated_count": 10,
+  "storage": "github_static_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_discipline",
+      "title_ru": "Дисциплина",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_discipline.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_xenos_lore",
+      "title_ru": "Знание ксеносов",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_xenos_lore.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_trade",
+      "title_ru": "Торговля",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_trade.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_navigation_skill",
+      "title_ru": "Навигация",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_navigation_skill.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_imperium",
+      "title_ru": "Империум",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_imperium.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_inquisition",
+      "title_ru": "Инквизиция",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_inquisition.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_mechanicus",
+      "title_ru": "Механикус",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_mechanicus.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_astra_militarum",
+      "title_ru": "Астра Милитарум",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_astra_militarum.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_sororitas",
+      "title_ru": "Сороритас",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_sororitas.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_space_marines",
+      "title_ru": "Космодесант",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_space_marines.webp",
+      "source": "github-production-assets"
+    }
+  ]
+}

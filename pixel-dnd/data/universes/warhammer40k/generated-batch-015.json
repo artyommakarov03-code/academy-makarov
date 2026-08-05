@@ -1,0 +1,131 @@
+{
+  "batch_key": "wh40k-batch-015",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Нарезанные игровые ассеты 31–40",
+  "generated_count": 10,
+  "storage": "github_static_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_faction_grey_knights",
+      "title_ru": "Серые Рыцари",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_grey_knights.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_custodes",
+      "title_ru": "Кустодес",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_custodes.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_aeldari",
+      "title_ru": "Аэльдари",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_aeldari.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_orks",
+      "title_ru": "Орки",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_orks.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_tau",
+      "title_ru": "Тау",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_tau.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_faction_chaos",
+      "title_ru": "Хаос",
+      "category": "factions",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_faction_chaos.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_health",
+      "title_ru": "Здоровье",
+      "category": "resources",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_resource_health.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_health_state_1",
+      "title_ru": "Здоровье: состояние 1",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_health_state_1.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_health_state_2",
+      "title_ru": "Здоровье: состояние 2",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_health_state_2.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_health_state_3",
+      "title_ru": "Здоровье: состояние 3",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_health_state_3.webp",
+      "source": "github-production-assets"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "batch_key": "wh40k-batch-012",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Нарезанные игровые ассеты 1–10",
+  "generated_count": 10,
+  "storage": "github_static_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_strength",
+      "title_ru": "Сила",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_strength.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_agility",
+      "title_ru": "Ловкость",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_agility.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_endurance",
+      "title_ru": "Выносливость",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_endurance.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_intelligence",
+      "title_ru": "Интеллект",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_intelligence.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_willpower",
+      "title_ru": "Воля",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_willpower.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_perception",
+      "title_ru": "Восприятие",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_perception.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_charisma",
+      "title_ru": "Харизма",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_charisma.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_initiative",
+      "title_ru": "Инициатива",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_initiative.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_marksmanship",
+      "title_ru": "Меткость",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_marksmanship.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_stealth_skill",
+      "title_ru": "Скрытность",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_stealth_skill.webp",
+      "source": "github-production-assets"
+    }
+  ]
+}

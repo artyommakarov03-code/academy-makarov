@@ -1,0 +1,386 @@
+{
+  "status": "partial_recovery",
+  "archive_bytes": 128143,
+  "chunks": [
+    {
+      "name": "chunk-001.b64",
+      "encoded_chars": 11999,
+      "decoded_bytes": 8999
+    },
+    {
+      "name": "chunk-002.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-003.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-004.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-005.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-006.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-007.b64",
+      "encoded_chars": 4902,
+      "decoded_bytes": 3676
+    },
+    {
+      "name": "chunk-008.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-009.b64",
+      "encoded_chars": 12104,
+      "decoded_bytes": 9078
+    },
+    {
+      "name": "chunk-010.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-011.b64",
+      "encoded_chars": 12000,
+      "decoded_bytes": 9000
+    },
+    {
+      "name": "chunk-012-00.b64",
+      "encoded_chars": 4000,
+      "decoded_bytes": 3000
+    },
+    {
+      "name": "chunk-012-01.b64",
+      "encoded_chars": 4000,
+      "decoded_bytes": 3000
+    },
+    {
+      "name": "chunk-012-02.b64",
+      "encoded_chars": 4000,
+      "decoded_bytes": 3000
+    },
+    {
+      "name": "chunk-013-00.b64",
+      "encoded_chars": 6000,
+      "decoded_bytes": 4500
+    },
+    {
+      "name": "chunk-013-01.b64",
+      "encoded_chars": 6000,
+      "decoded_bytes": 4500
+    },
+    {
+      "name": "chunk-014-00.b64",
+      "encoded_chars": 6000,
+      "decoded_bytes": 4500
+    },
+    {
+      "name": "chunk-014-01.b64",
+      "encoded_chars": 6000,
+      "decoded_bytes": 4500
+    },
+    {
+      "name": "chunk-015-00.b64",
+      "encoded_chars": 6002,
+      "decoded_bytes": 4501
+    },
+    {
+      "name": "chunk-015-01.b64",
+      "encoded_chars": 3852,
+      "decoded_bytes": 2889
+    }
+  ],
+  "central_records_recovered": 48,
+  "files_recovered": 77,
+  "webps_recovered": 67,
+  "manifests_recovered": 9,
+  "index_recovered": true,
+  "intended_assets": 86,
+  "available_assets": 67,
+  "missing_assets": [
+    {
+      "batch_key": "wh40k-batch-012",
+      "asset_key": "wh40k_agility",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-012",
+      "asset_key": "wh40k_willpower",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-012",
+      "asset_key": "wh40k_initiative",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-013",
+      "asset_key": "wh40k_interrogation",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-013",
+      "asset_key": "wh40k_investigation",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-014",
+      "asset_key": "wh40k_xenos_lore",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-014",
+      "asset_key": "wh40k_navigation_skill",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-014",
+      "asset_key": "wh40k_faction_sororitas",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-014",
+      "asset_key": "wh40k_faction_space_marines",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-016",
+      "asset_key": "wh40k_resource_armor",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-016",
+      "asset_key": "wh40k_resource_shield_state_2",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-016",
+      "asset_key": "wh40k_resource_shield_state_3",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-017",
+      "asset_key": "wh40k_resource_morale_state_3",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-017",
+      "asset_key": "wh40k_resource_ammo_state_1",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-018",
+      "asset_key": "wh40k_resource_ammo_state_4",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-018",
+      "asset_key": "wh40k_resource_psy_power",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-019",
+      "asset_key": "wh40k_resource_overheat_state_2",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-020",
+      "asset_key": "wh40k_resource_overheat_state_4",
+      "file": null
+    },
+    {
+      "batch_key": "wh40k-batch-020",
+      "asset_key": "wh40k_resource_reputation_state_3",
+      "file": null
+    }
+  ],
+  "missing_central_records": [
+    {
+      "name": "assets/warhammer40k/production/wh40k_agility.webp",
+      "position": 121787,
+      "method": 8,
+      "crc32": 31888853,
+      "compressed_size": 1831,
+      "uncompressed_size": 1826,
+      "original_offset": 55633
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_faction_sororitas.webp",
+      "position": 118466,
+      "method": 8,
+      "crc32": 3099393639,
+      "compressed_size": 1911,
+      "uncompressed_size": 1906,
+      "original_offset": 4014
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_faction_space_marines.webp",
+      "position": 121678,
+      "method": 8,
+      "crc32": 3395014899,
+      "compressed_size": 1545,
+      "uncompressed_size": 1540,
+      "original_offset": 53995
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_initiative.webp",
+      "position": 122104,
+      "method": 8,
+      "crc32": 3437582149,
+      "compressed_size": 1895,
+      "uncompressed_size": 1890,
+      "original_offset": 59025
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_interrogation.webp",
+      "position": 118141,
+      "method": 8,
+      "crc32": 1197508793,
+      "compressed_size": 1897,
+      "uncompressed_size": 1892,
+      "original_offset": 704
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_ammo_state_1.webp",
+      "position": 126916,
+      "method": 8,
+      "crc32": 2429705415,
+      "compressed_size": 639,
+      "uncompressed_size": 634,
+      "original_offset": 117035
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_ammo_state_4.webp",
+      "position": 118357,
+      "method": 8,
+      "crc32": 2772316180,
+      "compressed_size": 513,
+      "uncompressed_size": 508,
+      "original_offset": 3408
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_armor.webp",
+      "position": 126814,
+      "method": 8,
+      "crc32": 2116555917,
+      "compressed_size": 1955,
+      "uncompressed_size": 1948,
+      "original_offset": 114960
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_morale_state_3.webp",
+      "position": 122202,
+      "method": 8,
+      "crc32": 489022899,
+      "compressed_size": 663,
+      "uncompressed_size": 658,
+      "original_offset": 61002
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_overheat_state_2.webp",
+      "position": 122426,
+      "method": 8,
+      "crc32": 3504429357,
+      "compressed_size": 583,
+      "uncompressed_size": 578,
+      "original_offset": 62528
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_overheat_state_4.webp",
+      "position": 122313,
+      "method": 8,
+      "crc32": 4063058772,
+      "compressed_size": 671,
+      "uncompressed_size": 666,
+      "original_offset": 61760
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_reputation_state_3.webp",
+      "position": 118242,
+      "method": 8,
+      "crc32": 1446285902,
+      "compressed_size": 623,
+      "uncompressed_size": 618,
+      "original_offset": 2686
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_shield_state_2.webp",
+      "position": 121882,
+      "method": 8,
+      "crc32": 1478003161,
+      "compressed_size": 609,
+      "uncompressed_size": 604,
+      "original_offset": 57543
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_resource_shield_state_3.webp",
+      "position": 121993,
+      "method": 8,
+      "crc32": 1709948765,
+      "compressed_size": 683,
+      "uncompressed_size": 678,
+      "original_offset": 58247
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_willpower.webp",
+      "position": 118571,
+      "method": 8,
+      "crc32": 2450185019,
+      "compressed_size": 1913,
+      "uncompressed_size": 1908,
+      "original_offset": 6014
+    },
+    {
+      "name": "assets/warhammer40k/production/wh40k_xenos_lore.webp",
+      "position": 118668,
+      "method": 8,
+      "crc32": 3713540566,
+      "compressed_size": 1889,
+      "uncompressed_size": 1884,
+      "original_offset": 8008
+    }
+  ],
+  "rejected_headers": [
+    {
+      "offset": 704,
+      "error": "Integrity mismatch size=1892/1892 crc=3634621652/1197508793"
+    },
+    {
+      "offset": 53994,
+      "error": "Integrity mismatch size=1540/1540 crc=166613995/3395014899"
+    },
+    {
+      "offset": 67536,
+      "error": "Integrity mismatch size=1738/1738 crc=2900704023/2197069401"
+    },
+    {
+      "offset": 84899,
+      "error": "Integrity mismatch size=1824/1824 crc=2099474170/621664150"
+    },
+    {
+      "offset": 95674,
+      "error": "Integrity mismatch size=1886/1886 crc=3647118589/1165281024"
+    },
+    {
+      "offset": 108477,
+      "error": "Integrity mismatch size=1950/1948 crc=2116555917/2116555917"
+    },
+    {
+      "offset": 110518,
+      "error": "Integrity mismatch size=634/634 crc=2429707207/2429705415"
+    }
+  ]
+}

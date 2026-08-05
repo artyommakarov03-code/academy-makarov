@@ -1,0 +1,131 @@
+{
+  "batch_key": "wh40k-batch-018",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Нарезанные игровые ассеты 61–70",
+  "generated_count": 10,
+  "storage": "github_static_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_resource_ammo_state_4",
+      "title_ru": "Боеприпасы: состояние 4",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_ammo_state_4.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_energy",
+      "title_ru": "Энергия",
+      "category": "resources",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_resource_energy.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_energy_state_1",
+      "title_ru": "Энергия: состояние 1",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_energy_state_1.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_energy_state_2",
+      "title_ru": "Энергия: состояние 2",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_energy_state_2.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_energy_state_3",
+      "title_ru": "Энергия: состояние 3",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_energy_state_3.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_energy_state_4",
+      "title_ru": "Энергия: состояние 4",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_energy_state_4.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_psy_power",
+      "title_ru": "Пси-сила",
+      "category": "resources",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_resource_psy_power.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_psy_power_state_1",
+      "title_ru": "Пси-сила: состояние 1",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_psy_power_state_1.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_psy_power_state_2",
+      "title_ru": "Пси-сила: состояние 2",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_psy_power_state_2.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_psy_power_state_3",
+      "title_ru": "Пси-сила: состояние 3",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_psy_power_state_3.webp",
+      "source": "github-production-assets"
+    }
+  ]
+}

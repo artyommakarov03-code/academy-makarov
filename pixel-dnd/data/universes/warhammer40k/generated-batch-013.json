@@ -1,0 +1,131 @@
+{
+  "batch_key": "wh40k-batch-013",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Нарезанные игровые ассеты 11–20",
+  "generated_count": 10,
+  "storage": "github_static_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_tech_skill",
+      "title_ru": "Техника",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_tech_skill.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_survival",
+      "title_ru": "Выживание",
+      "category": "attributes",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_survival.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_medicine",
+      "title_ru": "Медицина",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_medicine.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_psykana",
+      "title_ru": "Псайкана",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_psykana.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_command",
+      "title_ru": "Командование",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_command.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_interrogation",
+      "title_ru": "Допрос",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_interrogation.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_investigation",
+      "title_ru": "Исследование",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_investigation.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_hacking",
+      "title_ru": "Взлом",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_hacking.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_crafting",
+      "title_ru": "Ремесло",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_crafting.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_awareness",
+      "title_ru": "Осведомлённость",
+      "category": "skills",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_awareness.webp",
+      "source": "github-production-assets"
+    }
+  ]
+}

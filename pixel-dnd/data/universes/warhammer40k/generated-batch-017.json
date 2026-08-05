@@ -1,0 +1,131 @@
+{
+  "batch_key": "wh40k-batch-017",
+  "universe": "warhammer40k",
+  "language": "ru",
+  "status": "active",
+  "title_ru": "Нарезанные игровые ассеты 51–60",
+  "generated_count": 10,
+  "storage": "github_static_assets",
+  "assets": [
+    {
+      "asset_key": "wh40k_resource_shield_state_4",
+      "title_ru": "Щит: состояние 4",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_shield_state_4.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_morale",
+      "title_ru": "Мораль",
+      "category": "resources",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_resource_morale.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_morale_state_1",
+      "title_ru": "Мораль: состояние 1",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_morale_state_1.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_morale_state_2",
+      "title_ru": "Мораль: состояние 2",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_morale_state_2.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_morale_state_3",
+      "title_ru": "Мораль: состояние 3",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_morale_state_3.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_morale_state_4",
+      "title_ru": "Мораль: состояние 4",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_morale_state_4.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_ammo",
+      "title_ru": "Боеприпасы",
+      "category": "resources",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 48,
+      "height": 48,
+      "url": "/assets/warhammer40k/production/wh40k_resource_ammo.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_ammo_state_1",
+      "title_ru": "Боеприпасы: состояние 1",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_ammo_state_1.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_ammo_state_2",
+      "title_ru": "Боеприпасы: состояние 2",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_ammo_state_2.webp",
+      "source": "github-production-assets"
+    },
+    {
+      "asset_key": "wh40k_resource_ammo_state_3",
+      "title_ru": "Боеприпасы: состояние 3",
+      "category": "resource_states",
+      "creator_only": false,
+      "render_mode": "direct",
+      "mime_type": "image/webp",
+      "width": 24,
+      "height": 24,
+      "url": "/assets/warhammer40k/production/wh40k_resource_ammo_state_3.webp",
+      "source": "github-production-assets"
+    }
+  ]
+}
