@@ -1,10 +1,52 @@
 import { createServer } from 'node:http';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gunzipSync } from 'node:zlib';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
+
+// В GitHub интерфейс хранится компактными частями, чтобы установка была автоматической.
+// При первом запуске сервер восстанавливает HTML/CSS/JS рядом с собой.
+function restoreBundledClient() {
+  const required = ['index.html', 'app.js', 'styles.css'];
+  if (required.every(name => existsSync(join(root, name)))) return;
+
+  const bundleDir = join(root, '..', 'pixel-dnd-source');
+  if (!existsSync(bundleDir)) throw new Error('Pixel DND client bundle is missing');
+
+  const encoded = readdirSync(bundleDir)
+    .filter(name => /^chunk-\d+\.b64$/.test(name))
+    .sort()
+    .map(name => readFileSync(join(bundleDir, name), 'utf8'))
+    .join('');
+  const tar = gunzipSync(Buffer.from(encoded, 'base64'));
+
+  let offset = 0;
+  while (offset + 512 <= tar.length) {
+    const header = tar.subarray(offset, offset + 512);
+    if (header.every(byte => byte === 0)) break;
+    const name = header.subarray(0, 100).toString('utf8').replace(/\0.*$/, '');
+    const sizeText = header.subarray(124, 136).toString('ascii').replace(/\0.*$/, '').trim();
+    const size = Number.parseInt(sizeText || '0', 8);
+    const dataStart = offset + 512;
+
+    if (name.startsWith('pixel-dnd/')) {
+      const relative = name.slice('pixel-dnd/'.length);
+      if (required.includes(relative)) {
+        writeFileSync(join(root, relative), tar.subarray(dataStart, dataStart + size));
+      }
+    }
+    offset = dataStart + Math.ceil(size / 512) * 512;
+  }
+
+  if (!required.every(name => existsSync(join(root, name)))) {
+    throw new Error('Pixel DND client bundle is incomplete');
+  }
+}
+
+restoreBundledClient();
 
 // Локально загружает переменные из .env. На Render/Railway переменные
 // задаются в панели хостинга, поэтому файл .env туда загружать не нужно.
