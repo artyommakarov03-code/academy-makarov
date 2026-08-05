@@ -1,0 +1,160 @@
+{
+  "batch_key": "wh40k-batch-001",
+  "source_url": "https://kxlvdhofagbseytqqegm.supabase.co/functions/v1/game-asset?key=wh40k_batch_001_sheet",
+  "source_reference_size": [
+    1536,
+    1024
+  ],
+  "downloaded_size": [
+    320,
+    213
+  ],
+  "upscale": 3,
+  "generated_count": 8,
+  "assets": [
+    {
+      "asset_key": "wh40k_w1_003_character_screen",
+      "crop_box_on_preview": [
+        134,
+        26,
+        195,
+        92
+      ],
+      "natural_size": [
+        61,
+        66
+      ],
+      "output_size": [
+        183,
+        198
+      ],
+      "bytes": 6292
+    },
+    {
+      "asset_key": "wh40k_w1_004_faction_select",
+      "crop_box_on_preview": [
+        198,
+        26,
+        256,
+        92
+      ],
+      "natural_size": [
+        58,
+        66
+      ],
+      "output_size": [
+        174,
+        198
+      ],
+      "bytes": 6390
+    },
+    {
+      "asset_key": "wh40k_w1_005_inventory",
+      "crop_box_on_preview": [
+        258,
+        29,
+        316,
+        92
+      ],
+      "natural_size": [
+        58,
+        63
+      ],
+      "output_size": [
+        174,
+        189
+      ],
+      "bytes": 5842
+    },
+    {
+      "asset_key": "wh40k_w1_006_quest_log",
+      "crop_box_on_preview": [
+        4,
+        117,
+        66,
+        194
+      ],
+      "natural_size": [
+        62,
+        77
+      ],
+      "output_size": [
+        186,
+        231
+      ],
+      "bytes": 5492
+    },
+    {
+      "asset_key": "wh40k_w1_007_sector_map",
+      "crop_box_on_preview": [
+        69,
+        117,
+        129,
+        194
+      ],
+      "natural_size": [
+        60,
+        77
+      ],
+      "output_size": [
+        180,
+        231
+      ],
+      "bytes": 5092
+    },
+    {
+      "asset_key": "wh40k_w1_008_assault_sprite",
+      "crop_box_on_preview": [
+        133,
+        116,
+        195,
+        194
+      ],
+      "natural_size": [
+        62,
+        78
+      ],
+      "output_size": [
+        186,
+        234
+      ],
+      "bytes": 6716
+    },
+    {
+      "asset_key": "wh40k_w1_009_hive_map",
+      "crop_box_on_preview": [
+        198,
+        116,
+        256,
+        194
+      ],
+      "natural_size": [
+        58,
+        78
+      ],
+      "output_size": [
+        174,
+        234
+      ],
+      "bytes": 6432
+    },
+    {
+      "asset_key": "wh40k_w1_010_weapon_effects",
+      "crop_box_on_preview": [
+        258,
+        118,
+        316,
+        194
+      ],
+      "natural_size": [
+        58,
+        76
+      ],
+      "output_size": [
+        174,
+        228
+      ],
+      "bytes": 7760
+    }
+  ]
+}
