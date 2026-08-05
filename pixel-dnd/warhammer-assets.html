@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pixel DND — ассеты мрачной галактики</title>
+  <style>
+    :root { color-scheme: dark; --bg:#070a0d; --panel:#10151b; --line:#2a323c; --gold:#d7a33d; --text:#e7e9ec; --muted:#8f99a6; --green:#65d47c; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:radial-gradient(circle at 50% -10%,#212830 0,#0a0e12 35%,#050709 100%); color:var(--text); font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px clamp(16px,4vw,48px); background:rgba(5,8,11,.94); border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    h1 { margin:0; font-size:clamp(19px,3vw,31px); letter-spacing:.04em; }
+    h1 span { color:var(--gold); }
+    .back { color:#111; background:var(--gold); padding:10px 15px; border-radius:8px; font-weight:800; text-decoration:none; white-space:nowrap; }
+    main { width:min(1500px,96vw); margin:24px auto 60px; }
+    .hero { display:grid; grid-template-columns:1.5fr 1fr; gap:18px; margin-bottom:22px; }
+    .hero > div { padding:22px; border:1px solid var(--line); background:linear-gradient(145deg,rgba(22,28,35,.96),rgba(10,14,18,.96)); border-radius:12px; }
+    .hero p { margin:.6rem 0 0; color:var(--muted); max-width:75ch; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .stat { text-align:center; padding:14px 8px; border:1px solid #343d47; border-radius:9px; background:#0a0e12; }
+    .stat strong { display:block; color:var(--green); font-size:26px; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:9px; margin:18px 0; }
+    button { border:1px solid #3b4652; color:var(--text); background:#11171d; padding:9px 13px; border-radius:8px; cursor:pointer; }
+    button.active, button:hover { border-color:var(--gold); color:var(--gold); }
+    .batch-title { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:28px 0 12px; }
+    .batch-title h2 { margin:0; color:var(--gold); }
+    .batch-title small { color:var(--muted); }
+    .sheet { width:100%; max-height:420px; object-fit:contain; background:#050709; border:1px solid var(--line); border-radius:12px; image-rendering:auto; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-top:14px; }
+    .card { overflow:hidden; border:1px solid var(--line); border-radius:10px; background:var(--panel); transition:.18s transform,.18s border-color; }
+    .card:hover { transform:translateY(-2px); border-color:#80652c; }
+    .preview { width:100%; height:190px; position:relative; overflow:hidden; background:#050709; }
+    .preview img { position:absolute; max-width:none; image-rendering:auto; }
+    .direct { width:100%!important; height:100%!important; inset:0; object-fit:contain; }
+    .meta { padding:12px 13px 14px; }
+    .meta strong { display:block; margin-bottom:5px; }
+    .meta span { color:var(--muted); font-size:13px; }
+    .badge { display:inline-block; margin-left:7px; padding:2px 7px; color:#171005!important; background:var(--gold); border-radius:999px; font-size:11px!important; font-weight:800; }
+    .empty,.error { padding:28px; text-align:center; border:1px dashed #434d58; border-radius:12px; color:var(--muted); }
+    footer { border-top:1px solid var(--line); padding:22px; text-align:center; color:var(--muted); }
+    @media(max-width:800px){ .hero{grid-template-columns:1fr}.preview{height:170px}.stats{grid-template-columns:repeat(3,1fr)} }
+  </style>
+</head>
+<body>
+<header>
+  <h1>PIXEL DND · <span>МРАЧНАЯ ГАЛАКТИКА</span></h1>
+  <a class="back" href="/">Вернуться в игру</a>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <h2>Предсозданные ассеты движка</h2>
+      <p>Здесь движок загружает уже подготовленные карты, интерфейсы, юнитов и эффекты. Они не требуют новой генерации во время каждой игровой сессии.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong id="assetCount">—</strong>ассетов</div>
+      <div class="stat"><strong id="batchCount">—</strong>партии</div>
+      <div class="stat"><strong id="onlineState">…</strong>статус</div>
+    </div>
+  </section>
+  <div class="toolbar">
+    <button class="active" data-filter="all">Все</button>
+    <button data-filter="maps">Карты</button>
+    <button data-filter="units">Юниты</button>
+    <button data-filter="interface">Интерфейс</button>
+    <button data-filter="effects">Эффекты</button>
+  </div>
+  <div id="content" class="empty">Загрузка манифестов…</div>
+</main>
+<footer>Неофициальный фанатский модуль Pixel DND · ассеты загружаются через манифесты GitHub и Supabase</footer>
+<script type="module">
+const INDEX_URL='/data/universes/warhammer40k/generated-index.json';
+const content=document.querySelector('#content');
+let batches=[];
+let filter='all';
+
+function categoryOf(asset){
+  const c=(asset.category||'').toLowerCase();
+  if(c.includes('map')) return 'maps';
+  if(c.includes('unit')||c.includes('class')) return 'units';
+  if(c.includes('effect')) return 'effects';
+  if(c.includes('ui')||c.includes('interface')) return 'interface';
+  return c||'other';
+}
+
+function createPreview(asset,batch){
+  const box=document.createElement('div'); box.className='preview';
+  const img=document.createElement('img');
+  if(asset.render_mode==='direct'&&asset.url){
+    img.src=asset.url; img.className='direct'; box.append(img); return box;
+  }
+  const crop=asset.sheet_crop;
+  if(!crop){ img.src=batch.sheet.url; img.className='direct'; box.append(img); return box; }
+  const [x1,y1,x2,y2]=crop;
+  const cw=260,ch=190,sw=batch.sheet.source_width,sh=batch.sheet.source_height;
+  const scale=Math.max(cw/(x2-x1),ch/(y2-y1));
+  img.src=batch.sheet.url;
+  img.style.width=`${sw*scale}px`;
+  img.style.height=`${sh*scale}px`;
+  img.style.left=`${-x1*scale}px`;
+  img.style.top=`${-y1*scale}px`;
+  box.append(img); return box;
+}
+
+function render(){
+  content.className=''; content.innerHTML='';
+  let visible=0;
+  for(const batch of batches){
+    const assets=batch.assets.filter(a=>filter==='all'||categoryOf(a)===filter);
+    if(!assets.length) continue;
+    visible+=assets.length;
+    const title=document.createElement('div'); title.className='batch-title';
+    title.innerHTML=`<h2>Партия ${batch.prompt_range?.[0]||1}–${batch.prompt_range?.[1]||batch.generated_count}</h2><small>${assets.length} элементов · ${batch.status}</small>`;
+    content.append(title);
+    const sheet=document.createElement('img'); sheet.className='sheet'; sheet.src=batch.sheet.url; sheet.alt=`Общий лист ${batch.batch_id}`; content.append(sheet);
+    const grid=document.createElement('div'); grid.className='grid';
+    for(const asset of assets){
+      const card=document.createElement('article'); card.className='card';
+      card.append(createPreview(asset,batch));
+      const meta=document.createElement('div'); meta.className='meta';
+      meta.innerHTML=`<strong>${asset.title_ru||asset.asset_key}<span class="badge">${asset.prompt_number??'—'}</span></strong><span>${categoryOf(asset)} · ${asset.asset_key}</span>`;
+      card.append(meta); grid.append(card);
+    }
+    content.append(grid);
+  }
+  if(!visible){content.className='empty';content.textContent='В этой категории пока нет ассетов.';}
+}
+
+for(const button of document.querySelectorAll('[data-filter]')){
+  button.addEventListener('click',()=>{document.querySelector('.toolbar .active')?.classList.remove('active');button.classList.add('active');filter=button.dataset.filter;render();});
+}
+
+try{
+  const index=await fetch(INDEX_URL,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(`index ${r.status}`);return r.json();});
+  batches=await Promise.all(index.manifests.map(url=>fetch(url,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(`${url}: ${r.status}`);return r.json();})));
+  document.querySelector('#assetCount').textContent=batches.reduce((n,b)=>n+b.assets.length,0);
+  document.querySelector('#batchCount').textContent=batches.length;
+  document.querySelector('#onlineState').textContent='OK';
+  render();
+}catch(error){
+  console.error(error); document.querySelector('#onlineState').textContent='ОШИБКА';
+  content.className='error'; content.textContent='Не удалось загрузить ассеты. Проверьте развёртывание сайта и Supabase.';
+}
+</script>
+</body>
+</html>
