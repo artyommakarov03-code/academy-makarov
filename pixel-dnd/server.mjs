@@ -7,7 +7,6 @@ import { gunzipSync } from 'node:zlib';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 
-// В GitHub интерфейс хранится компактными частями, чтобы установка была автоматической.
 function restoreBundledClient() {
   const required = ['index.html', 'app.js', 'styles.css'];
   if (required.every(name => existsSync(join(root, name)))) return;
@@ -33,7 +32,6 @@ function restoreBundledClient() {
 }
 restoreBundledClient();
 
-// Предсгенерированные ассеты разворачиваются из компактного архива при первом запуске Render.
 function restoreWarhammerAssetBundle() {
   const required = ['assets/warhammer40k/generated/engine_overview.webp','assets/warhammer40k/generated/maps_sheet.webp','data/universes/warhammer40k/manifest.json'];
   if (required.every(name => existsSync(join(root, name)))) return;
@@ -51,7 +49,7 @@ function restoreWarhammerAssetBundle() {
     const dataStart = offset + 512;
     if (name.startsWith('pixel-dnd/')) {
       const relative = name.slice('pixel-dnd/'.length);
-      const allowed = relative.startsWith('assets/warhammer40k/') || relative.startsWith('data/universes/warhammer40k/');
+      const allowed = ['index.html','app.js','styles.css'].includes(relative) || relative.startsWith('assets/warhammer40k/') || relative.startsWith('data/universes/warhammer40k/');
       if (allowed && !relative.includes('..')) {
         const destination = join(root, relative);
         mkdirSync(join(destination, '..'), { recursive:true });
