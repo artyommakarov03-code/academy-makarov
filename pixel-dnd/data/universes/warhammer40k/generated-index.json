@@ -1,14 +1,15 @@
 {
   "universe": "warhammer40k",
   "language": "ru",
-  "updated_at": "2026-08-05T21:55:00+03:00",
-  "total_generated": 71,
+  "updated_at": "2026-08-05T22:05:00+03:00",
+  "total_generated": 81,
   "manifests": [
     "/data/universes/warhammer40k/generated-batch-001.json",
     "/data/universes/warhammer40k/generated-batch-002.json",
     "/data/universes/warhammer40k/generated-batch-003.json",
     "/data/universes/warhammer40k/generated-batch-004.json",
     "/data/universes/warhammer40k/generated-batch-005.json",
-    "/data/universes/warhammer40k/generated-batch-006.json"
+    "/data/universes/warhammer40k/generated-batch-006.json",
+    "/data/universes/warhammer40k/generated-batch-007.json"
   ]
 }
