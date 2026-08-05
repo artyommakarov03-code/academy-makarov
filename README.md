@@ -30,3 +30,13 @@
 
 ## Ближайший этап
 Создание веб-приложения Академии с авторизацией, адаптивными сессиями, прогрессом, журналом, повторением и интеграцией с Notion/Drive.
+
+---
+
+## Pixel DND — второй сайт
+
+Готовая игровая версия находится в папке `pixel-dnd`. Конфигурация Render и безопасное серверное подключение OpenAI уже подготовлены.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/artyommakarov03-code/academy-makarov)
+
+После нажатия Render попросит только значение `OPENAI_API_KEY`, затем создаст отдельный сайт `pixel-dnd`.
