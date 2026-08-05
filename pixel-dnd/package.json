@@ -1,13 +1,13 @@
 {
   "name": "pixel-dnd",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "start": "node server.mjs",
-    "dev": "node --watch server.mjs"
+    "start": "node restore-assets.mjs && node server.mjs",
+    "dev": "node restore-assets.mjs && node --watch server.mjs"
   }
 }
