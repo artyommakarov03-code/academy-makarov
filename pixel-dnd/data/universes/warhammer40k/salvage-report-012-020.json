@@ -1,5 +1,5 @@
 {
-  "status": "partial_recovery",
+  "status": "partial_recovery_with_reencoding",
   "archive_bytes": 128143,
   "chunks": [
     {
@@ -104,12 +104,103 @@
     }
   ],
   "central_records_recovered": 48,
-  "files_recovered": 77,
-  "webps_recovered": 67,
+  "files_recovered": 81,
+  "webps_recovered": 71,
+  "webps_crc_validated": 67,
+  "webps_reencoded": 4,
+  "reencoded_files": [
+    "assets/warhammer40k/production/wh40k_faction_space_marines.webp",
+    "assets/warhammer40k/production/wh40k_resource_ammo_state_1.webp",
+    "assets/warhammer40k/production/wh40k_resource_armor.webp",
+    "assets/warhammer40k/production/wh40k_resource_psy_power.webp"
+  ],
+  "recovery_modes": {
+    "assets/warhammer40k/production/wh40k_resource_energy_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_trade.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_survival.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_ammo_state_3.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_awareness.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_discipline.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_morale.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_ammo.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_armor_state_3.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_imperium.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_grey_knights.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_charisma.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_command.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_orks.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_armor_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_fatigue_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_health.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_overheat.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_overheat_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_crafting.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_ammo_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_psy_power_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_tau.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_custodes.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_intelligence.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_astra_militarum.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_health_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_fatigue.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_morale_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_space_marines.webp": "decoded_reencoded_48x48",
+    "assets/warhammer40k/production/wh40k_resource_energy_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_hacking.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_armor_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_health_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_psy_power_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_reputation_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_reputation.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_medicine.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_health_state_3.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_armor_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_tech_skill.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_energy_state_3.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_inquisition.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_fatigue_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_psy_power_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_stealth_skill.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_energy.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_psy_power_state_3.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_reputation_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_endurance.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_energy_state_2.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_fatigue_state_3.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_morale_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_perception.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_marksmanship.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_shield_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_fatigue_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_shield_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_psykana.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_morale_state_1.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_psy_power.webp": "decoded_reencoded_48x48",
+    "assets/warhammer40k/production/wh40k_faction_aeldari.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_reputation_state_4.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_strength.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_mechanicus.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_shield.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_faction_chaos.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_overheat_state_3.webp": "crc_validated",
+    "assets/warhammer40k/production/wh40k_resource_armor.webp": "decoded_reencoded_48x48",
+    "assets/warhammer40k/production/wh40k_resource_ammo_state_1.webp": "decoded_reencoded_24x24",
+    "assets/warhammer40k/production/wh40k_resource_health_state_1.webp": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-017.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-012.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-015.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-020.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-018.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-019.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-016.json": "crc_validated",
+    "data/universes/warhammer40k/generated-index.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-014.json": "crc_validated",
+    "data/universes/warhammer40k/generated-batch-013.json": "crc_validated"
+  },
   "manifests_recovered": 9,
   "index_recovered": true,
   "intended_assets": 86,
-  "available_assets": 67,
+  "available_assets": 71,
   "missing_assets": [
     {
       "batch_key": "wh40k-batch-012",
@@ -152,16 +243,6 @@
       "file": null
     },
     {
-      "batch_key": "wh40k-batch-014",
-      "asset_key": "wh40k_faction_space_marines",
-      "file": null
-    },
-    {
-      "batch_key": "wh40k-batch-016",
-      "asset_key": "wh40k_resource_armor",
-      "file": null
-    },
-    {
       "batch_key": "wh40k-batch-016",
       "asset_key": "wh40k_resource_shield_state_2",
       "file": null
@@ -177,18 +258,8 @@
       "file": null
     },
     {
-      "batch_key": "wh40k-batch-017",
-      "asset_key": "wh40k_resource_ammo_state_1",
-      "file": null
-    },
-    {
       "batch_key": "wh40k-batch-018",
       "asset_key": "wh40k_resource_ammo_state_4",
-      "file": null
-    },
-    {
-      "batch_key": "wh40k-batch-018",
-      "asset_key": "wh40k_resource_psy_power",
       "file": null
     },
     {
@@ -227,15 +298,6 @@
       "original_offset": 4014
     },
     {
-      "name": "assets/warhammer40k/production/wh40k_faction_space_marines.webp",
-      "position": 121678,
-      "method": 8,
-      "crc32": 3395014899,
-      "compressed_size": 1545,
-      "uncompressed_size": 1540,
-      "original_offset": 53995
-    },
-    {
       "name": "assets/warhammer40k/production/wh40k_initiative.webp",
       "position": 122104,
       "method": 8,
@@ -254,15 +316,6 @@
       "original_offset": 704
     },
     {
-      "name": "assets/warhammer40k/production/wh40k_resource_ammo_state_1.webp",
-      "position": 126916,
-      "method": 8,
-      "crc32": 2429705415,
-      "compressed_size": 639,
-      "uncompressed_size": 634,
-      "original_offset": 117035
-    },
-    {
       "name": "assets/warhammer40k/production/wh40k_resource_ammo_state_4.webp",
       "position": 118357,
       "method": 8,
@@ -270,15 +323,6 @@
       "compressed_size": 513,
       "uncompressed_size": 508,
       "original_offset": 3408
-    },
-    {
-      "name": "assets/warhammer40k/production/wh40k_resource_armor.webp",
-      "position": 126814,
-      "method": 8,
-      "crc32": 2116555917,
-      "compressed_size": 1955,
-      "uncompressed_size": 1948,
-      "original_offset": 114960
     },
     {
       "name": "assets/warhammer40k/production/wh40k_resource_morale_state_3.webp",
@@ -356,31 +400,18 @@
   "rejected_headers": [
     {
       "offset": 704,
-      "error": "Integrity mismatch size=1892/1892 crc=3634621652/1197508793"
-    },
-    {
-      "offset": 53994,
-      "error": "Integrity mismatch size=1540/1540 crc=166613995/3395014899"
+      "name": "assets/warhammer40k/production/wh40k_interrogation.webp",
+      "error": "could not create decoder object"
     },
     {
       "offset": 67536,
-      "error": "Integrity mismatch size=1738/1738 crc=2900704023/2197069401"
+      "name": "assets/warhammer40k/production/wh40k_navigation_skill.webp",
+      "error": "could not create decoder object"
     },
     {
       "offset": 84899,
-      "error": "Integrity mismatch size=1824/1824 crc=2099474170/621664150"
-    },
-    {
-      "offset": 95674,
-      "error": "Integrity mismatch size=1886/1886 crc=3647118589/1165281024"
-    },
-    {
-      "offset": 108477,
-      "error": "Integrity mismatch size=1950/1948 crc=2116555917/2116555917"
-    },
-    {
-      "offset": 110518,
-      "error": "Integrity mismatch size=634/634 crc=2429707207/2429705415"
+      "name": "assets/warhammer40k/production/wh40k_investigation.webp",
+      "error": "could not create decoder object"
     }
   ]
 }
